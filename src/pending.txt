@@ -1,0 +1,31 @@
+Gameboard factory function:
+    10x10 grid.
+    Be able to place ships at specific coordinates considering it's length and orientation.
+    Should have a receive attack function that determines whether or not the attack hit a ship,
+        send the hit() to the correct ship and recordes the coordinates of the missed shot.
+    Should report if all of it's ships have been sunk.
+
+    Data structure:
+        Make an object that has 10 arrays, each array represents a row of the board.
+        Each array has 10 items, representing the columns of the board.
+        The ship positions will be stored in this object with a number between 1 and 5
+            that will correlate it to the ship node in the gameboard tree.
+        
+
+
+
+
+
+
+How to represent the different ships on the board?
+    When inserting a ship the user will be asked the starting coordinate, and if the
+        orientation will be horizontal or vertical, the program must check if the
+        position is legal, in case it's not it should return an error.
+        
+How to determine if a ship has been sunk?
+    What are the common ship sizes?
+        1. Carrier:         5
+        2. Battleship:      4
+        3. Destroyer:       3
+        4. Submarine:       3
+        5. Patrol boat:     2
