@@ -1,0 +1,25 @@
+{
+  "name": "battleship",
+  "version": "0.1.0",
+  "description": "Battleship project for The Odin Project",
+  "main": "babel.config.js",
+  "scripts": {
+    "test": "jest --watch --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakrnem/battleship.git"
+  },
+  "author": "zakrnem",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "babel-jest": "^29.5.0",
+    "jest": "^29.5.0"
+  },
+  "bugs": {
+    "url": "https://github.com/zakrnem/battleship/issues"
+  },
+  "homepage": "https://github.com/zakrnem/battleship#readme"
+}

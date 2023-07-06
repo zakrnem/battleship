@@ -10,7 +10,12 @@ Gameboard factory function:
         Each array has 10 items, representing the columns of the board.
         The ship positions will be stored in this object with a number between 1 and 5
             that will correlate it to the ship node in the gameboard tree.
-        
+        The receiveAttack() will check if the attackCoordinates cell isnt equal to a empty string.
+            A empty string will represent a cell that hasn't been attacked and doesn't have a ship there.
+            In the case that if statement is true, it will compare the number to a switch case.
+            If the cell has a "1" for example, it means that the "Ship #1" has been attacked.
+            So it should call the this.ship1.hit() to increase the hit's number.
+            When executing this function the object will check if the ship is sunk.
 
 
 
