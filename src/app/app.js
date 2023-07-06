@@ -29,6 +29,19 @@ function gameboard() {
     }
 }
 
-function buildGrid() {
+export function buildGrid() {
+    const boardObj = {}
 
+    for (let row = 1; row <= 10; row++) {
+        boardObj[row] = {}
+
+        for (
+        let column = 'A';
+        column <= 'J';
+        column = String.fromCharCode(column.charCodeAt(0) + 1)
+        ) {
+        boardObj[row][column] = '_'
+        }
+    }
+    return boardObj
 }
