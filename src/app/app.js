@@ -37,8 +37,22 @@ export function gameboard() {
     ship3: null,
     ship4: null,
     ship5: null,
-    receiveAttack: function () {
-      return this.allShipsSunk()
+    receiveAttack: function (attackCoordinates) {
+      const coordinates = checkCoordinates(attackCoordinates[0], attackCoordinates[1])
+      let letterCoordinate = coordinates[0]
+      let numberCoordinate = coordinates[1]
+      let boardCell = this.grid[numberCoordinate][letterCoordinate]
+      if (boardCell === '_') {
+        this.grid[numberCoordinate][letterCoordinate] = 'X'
+      } else if (boardCell === 'X') {
+        throw new Error('Cell has already been attacked')
+      } else if (typeof boardCell === 'object') {
+        boardCell.hit()
+        console.log(boardCell.hits)
+        boardCell = 'X'
+      }
+      return this.grid
+      //return this.allShipsSunk()
     },
     allShipsSunk: function () {},
   }
@@ -50,10 +64,10 @@ export function insertShip(shipNumber, startCoordinate, orientation) {
   switch (true) {
     case shipNumber === 1:
       gameboard.ship1 = new ship(length[shipNumber])
-      const positionsArray = getPositionsArray(length[shipNumber], startCoordinate, orientation)
+      /* const positionsArray = getPositionsArray(length[shipNumber], startCoordinate, orientation)
       positionsArray.forEach((coordinates) => { //pseudocode
         gameboard.insertShip(coordinates)
-      })
+      })*/
       break
     case shipNumber === 2:
       gameboard.ship2 = new ship(length[shipNumber])
