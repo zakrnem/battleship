@@ -44,29 +44,28 @@ export function gameboard() {
   }
 }
 
-function insertShip(shipNumber, startCoordinate, orientation) {
-  let length
+export function insertShip(shipNumber, startCoordinate, orientation) {
+  const length = ['', 5, 4, 3, 3, 2]
 
   switch (true) {
     case shipNumber === 1:
-      length = 5
-      gameboard.ship1 = new ship(length)
+      gameboard.ship1 = new ship(length[shipNumber])
+      const positionsArray = getPositionsArray(length[shipNumber], startCoordinate, orientation)
+      positionsArray.forEach((coordinates) => { //pseudocode
+        gameboard.insertShip(coordinates)
+      })
       break
     case shipNumber === 2:
-      length = 4
-      gameboard.ship2 = new ship(length)
+      gameboard.ship2 = new ship(length[shipNumber])
       break
     case shipNumber === 3:
-      length = 3
-      gameboard.ship3 = new ship(length)
+      gameboard.ship3 = new ship(length[shipNumber])
       break
     case shipNumber === 4:
-      length = 3
-      gameboard.ship4 = new ship(length)
+      gameboard.ship4 = new ship(length[shipNumber])
       break
     case shipNumber === 5:
-      length = 2
-      gameboard.ship5 = new ship(length)
+      gameboard.ship5 = new ship(length[shipNumber])
       break
   }
 }

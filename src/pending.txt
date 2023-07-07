@@ -18,19 +18,41 @@ Gameboard factory function:
             When executing this function the object will check if the ship is sunk.
 
 
-
-
-
-
-How to represent the different ships on the board?
-    When inserting a ship the user will be asked the starting coordinate, and if the
-        orientation will be horizontal or vertical, the program must check if the
-        position is legal, in case it's not it should return an error.
+Insert ship:
+The object created with the gameboard factory function has a 'grid' element that consists of an object with multiple
+    arrays representing the board.
+We need to edit the 'grid' element after it's been created to insert the 'ships'.
+To do this we can create a f() that receives this 'grid' object as a argument so it's able to modify it.
+The question is how would we represent the ships in this grid.
+    We could add a string 'SH1' to represent an unharmed part of the 'Ship #1' into the cell.
+    When receiving an attack we could modify this string into lowerCase 'sh1'.
+        How would we check a repetitive attack so it doesn't cause an increase in a ship's hits.
+        Checking for undercase characters can be accomplished using a reg ex.
+            But wouldn't be easier to add a character like 'X' into the string and use a includes('X')
         
-How to determine if a ship has been sunk?
-    What are the common ship sizes?
-        1. Carrier:         5
-        2. Battleship:      4
-        3. Destroyer:       3
-        4. Submarine:       3
-        5. Patrol boat:     2
+
+    So it's cheaper to store the ship positions on the board.
+    But which would be the optimal way to populate the cells of the board?
+        We could even add the ship nodes into the cells so we skip one step of finding the appropiate node.
+            In the case we decided to use a number to represent the number of the ship: '1'.
+                We then would have to write a swith case to be able to call the appropiate node.
+                And produce an attack on that one.
+            On the other side if we add the 'ship node' into the cell we would just have to check if the content
+                of the cell is an object.
+                In that case simply create a var of the cell content, add a dot after it and call the hit()
+        After an attack the value of the cell could be changed for a string 'attacked'.
+        And a empty cell would have the string '_'.
+
+So the conclusion is:
+    The 'ship objects' don't need a coordinate storage.
+    Instead the 'board object' will be populated with:
+        '_' Empty cells.
+        'X' Attacked cells.
+        'node' Ship cells.
+    When receiving an attack that action will be processed by the gameboard().
+        The object created with that f() will have a receiveAttack().
+        That f() will check the 'board' to determine:
+            If board[letterCoordinate][numberCoordinate] isEqual to '_' then set cell as 'X'
+            If board[letterCoordinate][numberCoordinate] isEqual to 'X' then throw Error
+            If board[letterCoordinate][numberCoordinate] isEqual to 'node' then call node.hit()
+        

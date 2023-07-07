@@ -179,6 +179,9 @@ describe('getPositionsArray()', () => {
     ['B', 5],
   ]
   const start2 = ['B', 10]
+  const start3 = ['I', 3]
+  const start4 = ['A', 12]
+  const start5 = ['K', 1]
   test('Builds the ship positions array for horizontal orientation.', () =>
     expect(getPositionsArray(shipLength1, start1, 'horizontal')).toEqual(
       positionsArray1
@@ -187,9 +190,24 @@ describe('getPositionsArray()', () => {
     expect(getPositionsArray(shipLength2, start1, 'vertical')).toEqual(
       positionsArray2
     ))
-  test('throws error when part of the ship is outside the board', () => {
+  test('Throws error when part of the ship is outside the board vertically.', () => {
     expect(() => {
       getPositionsArray(shipLength1, start2, 'vertical')
     }).toThrow('Part of the ship is outside the board')
+  })
+  test('Throws error when part of the ship is outside the board horizontally.', () => {
+    expect(() => {
+      getPositionsArray(shipLength1, start3, 'horizontal')
+    }).toThrow('Part of the ship is outside the board')
+  })
+  test('Throws error when start of the ship is outside the board vertically.', () => {
+    expect(() => {
+      getPositionsArray(shipLength1, start4, 'vertical')
+    }).toThrow('Start position is outside of board')
+  })
+  test('Throws error when start of the ship is outside the board horizontally.', () => {
+    expect(() => {
+      getPositionsArray(shipLength1, start5, 'vertical')
+    }).toThrow('Start position is outside of board')
   })
 })
