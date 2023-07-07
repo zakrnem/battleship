@@ -13,13 +13,16 @@
   "author": "zakrnem",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
+    "@babel/core": "^7.22.8",
+    "@babel/preset-env": "^7.22.7",
     "babel-jest": "^29.5.0",
-    "jest": "^29.5.0"
+    "jest": "^29.6.1"
   },
   "bugs": {
     "url": "https://github.com/zakrnem/battleship/issues"
   },
-  "homepage": "https://github.com/zakrnem/battleship#readme"
+  "homepage": "https://github.com/zakrnem/battleship#readme",
+  "dependencies": {
+    "@babel/register": "^7.22.5"
+  }
 }
