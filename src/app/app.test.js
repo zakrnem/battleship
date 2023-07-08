@@ -1,4 +1,4 @@
-import { ship, buildGrid, getPositionsArray, checkCoordinates, gameboard } from './app'
+import { ship, buildGrid, getPositionsArray, checkCoordinates, gameboard, insertShip } from './app'
 
 describe('ship Factory', () => {
   const ship1 = ship(2)
@@ -459,8 +459,282 @@ describe('gameboard()', () => {
       J: '_',
     },
   }
-  test('Executing the gameboard f() creates a new object with the desired grid', () => {
+  const shipNumber = 1
+  const shipCoordinate = ['E',5]
+  const grid3 = {
+    1: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    2: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    3: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    4: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: 'X',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    5: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: 1,
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    6: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    7: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    8: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    9: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    10: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+  }
+  test('Executing the gameboard f() creates a new object with the desired grid.', () => {
     expect(game.grid).toEqual(grid1)})
-  test('Calling the receiveAttack f() of the game obj with an attackCoordinate produces the desired grid', () => {
+  test('Calling the receiveAttack f() of the game obj with an attackCoordinate produces the desired grid.', () => {
     expect(game.receiveAttack(attackCoordinate)).toEqual(grid2)})
+  test('Executing the game obj method locateShip() inserts one block of a ship in one cell of the grid.', () => {
+    expect(game.locateShipCell(shipNumber, shipCoordinate)).toEqual(grid3)})
   })
+
+describe('insertShip()', () => {
+  const game = gameboard()
+  const startCoordinate1 = ['B', 6]
+  const orientation1 = 'horizontal'
+  const startCoordinate2 = ['E', 9]
+  const orientation2 = 'horizontal'
+  const startCoordinate3 = ['C', 1]
+  const orientation3 = 'vertical'
+  const startCoordinate4 = ['D', 8]
+  const orientation4 = 'vertical'
+  const grid = {
+    1: {
+      A: '_',
+      B: '_',
+      C: 3,
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    2: {
+      A: '_',
+      B: '_',
+      C: 3,
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    3: {
+      A: '_',
+      B: '_',
+      C: 3,
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    4: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    5: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    6: {
+      A: '_',
+      B: 1,
+      C: 1,
+      D: 1,
+      E: 1,
+      F: 1,
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    7: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: '_',
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    8: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: 4,
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+    9: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: 4,
+      E: 2,
+      F: 2,
+      G: 2,
+      H: 2,
+      I: '_',
+      J: '_',
+    },
+    10: {
+      A: '_',
+      B: '_',
+      C: '_',
+      D: 4,
+      E: '_',
+      F: '_',
+      G: '_',
+      H: '_',
+      I: '_',
+      J: '_',
+    },
+  }
+  insertShip(game, 1, startCoordinate1, orientation1)
+  insertShip(game, 2, startCoordinate2, orientation2)
+  insertShip(game, 3, startCoordinate3, orientation3)
+  insertShip(game, 4, startCoordinate4, orientation4)
+  test('insertShip f() locates multiple ships on the board.', () => {
+    expect(game.grid).toEqual(grid)})
+  test(`insertShip f() assigns node values to the game obj parameter 'ship1'.`, () => {
+    expect(game.ship1.length).toEqual(5)})
+  test(`insertShip f() assigns node values to the game obj parameter 'ship2'.`, () => {
+    expect(game.ship2.length).toEqual(4)})
+  test(`insertShip f() assigns node values to the game obj parameter 'ship3'.`, () => {
+    expect(game.ship3.length).toEqual(3)})
+  test(`insertShip f() assigns node values to the game obj parameter 'ship4'.`, () => {
+    expect(game.ship4.length).toEqual(3)})
+})

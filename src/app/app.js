@@ -39,8 +39,8 @@ export function gameboard() {
     ship5: null,
     receiveAttack: function (attackCoordinates) {
       const coordinates = checkCoordinates(attackCoordinates[0], attackCoordinates[1])
-      let letterCoordinate = coordinates[0]
-      let numberCoordinate = coordinates[1]
+      const letterCoordinate = coordinates[0]
+      const numberCoordinate = coordinates[1]
       let boardCell = this.grid[numberCoordinate][letterCoordinate]
       if (boardCell === '_') {
         this.grid[numberCoordinate][letterCoordinate] = 'X'
@@ -54,33 +54,53 @@ export function gameboard() {
       return this.grid
       //return this.allShipsSunk()
     },
+    locateShipCell: function (shipNumber, coordinates) {
+      const letterCoordinate = coordinates[0]
+      const numberCoordinate =coordinates[1]
+      let boardCell = this.grid[numberCoordinate][letterCoordinate]
+  
+      if (boardCell === '_') {
+        this.grid[numberCoordinate][letterCoordinate] = shipNumber
+      } else if (typeof boardCell === 'object') {
+        throw new Error(`There's another ship in this location`)
+      }
+      return this.grid
+    },
     allShipsSunk: function () {},
   }
 }
 
-export function insertShip(shipNumber, startCoordinate, orientation) {
+export function insertShip(gameObj, shipNumber, startCoordinate, orientation) {
   const length = ['', 5, 4, 3, 3, 2]
 
   switch (true) {
     case shipNumber === 1:
-      gameboard.ship1 = new ship(length[shipNumber])
-      /* const positionsArray = getPositionsArray(length[shipNumber], startCoordinate, orientation)
-      positionsArray.forEach((coordinates) => { //pseudocode
-        gameboard.insertShip(coordinates)
-      })*/
+      gameObj.ship1 = new ship(length[shipNumber])
+      insertCompleteShip(length, shipNumber, startCoordinate, orientation, gameObj)
       break
     case shipNumber === 2:
-      gameboard.ship2 = new ship(length[shipNumber])
+      gameObj.ship2 = new ship(length[shipNumber])
+      insertCompleteShip(length, shipNumber, startCoordinate, orientation, gameObj)
       break
     case shipNumber === 3:
-      gameboard.ship3 = new ship(length[shipNumber])
+      gameObj.ship3 = new ship(length[shipNumber])
+      insertCompleteShip(length, shipNumber, startCoordinate, orientation, gameObj)
       break
     case shipNumber === 4:
-      gameboard.ship4 = new ship(length[shipNumber])
+      gameObj.ship4 = new ship(length[shipNumber])
+      insertCompleteShip(length, shipNumber, startCoordinate, orientation, gameObj)
       break
     case shipNumber === 5:
-      gameboard.ship5 = new ship(length[shipNumber])
+      gameObj.ship5 = new ship(length[shipNumber])
+      insertCompleteShip(length, shipNumber, startCoordinate, orientation, gameObj)
       break
+  }
+
+  function insertCompleteShip(length, shipNumber, startCoordinate, orientation, gameObj) {
+    const positionsArray = getPositionsArray(length[shipNumber], startCoordinate, orientation)
+    positionsArray.forEach((coordinates) => {
+      gameObj.locateShipCell(shipNumber, coordinates)
+    })
   }
 }
 
