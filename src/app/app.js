@@ -42,30 +42,34 @@ export function gameboard() {
       const letterCoordinate = coordinates[0]
       const numberCoordinate = coordinates[1]
       let boardCell = this.grid[numberCoordinate][letterCoordinate]
+      const initialGrid = this.grid
+      const initialBoardCell = initialGrid[numberCoordinate][letterCoordinate]
+
+      if (initialBoardCell === 'X') {
+        throw new Error('Cell has already been attacked')
+      }
       if (boardCell === '_') {
-        this.grid[numberCoordinate][letterCoordinate] = 'X'
+        boardCell = 'X'
       }
       if (typeof parseInt(boardCell) !== 'NaN') {
         switch (true) {
-          case (boardCell === '1'):
+          case boardCell === '1':
             this.ship1.hit()
             break
-          case (boardCell === '2'):
+          case boardCell === '2':
             this.ship2.hit()
             break
-          case (boardCell === '3'):
+          case boardCell === '3':
             this.ship3.hit()
             break
-          case (boardCell === '4'):
+          case boardCell === '4':
             this.ship4.hit()
             break
-          case (boardCell === '5'):
+          case boardCell === '5':
             this.ship5.hit()
             break
         }
         this.grid[numberCoordinate][letterCoordinate] = 'X'
-      } else if (boardCell === 'X') {
-        throw new Error('Cell has already been attacked')
       }
       return this.grid
     },

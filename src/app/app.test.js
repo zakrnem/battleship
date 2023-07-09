@@ -618,7 +618,7 @@ describe('insertShip: Inserts ships on the board.', () => {
     7: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     8: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     9: { A: '_', B: '_', C: '_', D: '4', E: '2', F: '2', G: '2', H: '2', I: '_', J: '_' },
-    10:{ A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    10: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
   }
   insertShip(game, 1, startCoordinate1, orientation1)
   insertShip(game, 2, startCoordinate2, orientation2)
@@ -659,7 +659,7 @@ describe('gameboard: Ships receive attacks & and sink.', () => {
     7: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     8: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     9: { A: '_', B: '_', C: '_', D: '4', E: '2', F: '2', G: '2', H: '2', I: '_', J: '_' },
-    10:{ A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    10: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
   }
   const grid2 = {
     1: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
@@ -671,7 +671,7 @@ describe('gameboard: Ships receive attacks & and sink.', () => {
     7: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     8: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     9: { A: '_', B: '_', C: '_', D: '4', E: '2', F: '2', G: '2', H: '2', I: '_', J: '_' },
-    10:{ A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    10: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
   }
 
   test('Initial board is setup with 5 ships.', () => {
@@ -689,33 +689,26 @@ describe('gameboard: Ships receive attacks & and sink.', () => {
     expect(game.ship5.isSunk()).toEqual(true)
   })
   test('Board is affected as expected after attacks.', () => {
-    game.receiveAttack(['B', '6'])
-    game.receiveAttack(['D', '6'])
-    game.receiveAttack(['I', '4'])
-    game.receiveAttack(['I', '5'])
     game.receiveAttack(['G', '3'])
     game.receiveAttack(['H', '5'])
     expect(game.grid).toEqual(grid2)
   })
   test(`Unattacked ships don't have hits.`, () => {
-    game.receiveAttack(['B', '6'])
-    game.receiveAttack(['D', '6'])
-    game.receiveAttack(['I', '4'])
-    game.receiveAttack(['I', '5'])
-    game.receiveAttack(['G', '3'])
-    game.receiveAttack(['H', '5'])
     expect(game.ship1.hits).toEqual(2)
     expect(game.ship5.hits).toEqual(2)
     expect(game.ship2.hits).toEqual(0)
   })
-  /* test('Throws error when attacking a previously attacked cell.', () => {
-    game.receiveAttack(['B', '6'])
-    game.receiveAttack(['D', '6'])
-    game.receiveAttack(['I', '4'])
-    game.receiveAttack(['I', '5'])
-    game.receiveAttack(['G', '3'])
-    game.receiveAttack(['H', '5'])
-    expect(game.grid).toEqual(grid2)
-    expect(game.receiveAttack(['D', '6'])).toThrow('Cell has already been attacked')
-  }) */
+  test('Throws error when attacking a previously attacked cell.', () => {
+    expect(() => {
+      game.receiveAttack(['D', '6'])
+    }).toThrow('Cell has already been attacked')
+    expect(game.ship1.hits).toEqual(2)
+    expect(() => {
+      game.receiveAttack(['I', '4'])
+    }).toThrow('Cell has already been attacked')
+    expect(game.ship5.hits).toEqual(2)
+    expect(() => {
+      game.receiveAttack(['G', '3'])
+    }).toThrow('Cell has already been attacked')
+  })
 })
