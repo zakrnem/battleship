@@ -26,7 +26,7 @@ describe('ship Factory', () => {
     expect(executeMultipleTimes()).toEqual(true))
 })
 
-describe('buildGrid()', () => {
+describe('buildGrid: Builds the gameboard.', () => {
   const board = buildGrid()
   const boardResult = {
     1: {
@@ -153,7 +153,7 @@ describe('buildGrid()', () => {
   test('The gameboard grid is built sucessfully.', () => expect(board).toEqual(boardResult))
 })
 
-describe('checkCoordinates()', () => {
+describe('checkCoordinates: Checks whether a specific coordinate is inside the board.', () => {
   test('Check coordinates function returns the same values when input is valid.', () => {
     expect(checkCoordinates('D', 10)).toEqual(['D', 10])
     expect(checkCoordinates('A', 5)).toEqual(['A', 5])
@@ -167,7 +167,7 @@ describe('checkCoordinates()', () => {
   })
 })
 
-describe('getPositionsArray()', () => {
+describe('getPositionsArray: Gets the positions of a ship.', () => {
   const start1 = ['B', 2]
   const shipLength1 = 5
   const positionsArray1 = [
@@ -214,7 +214,7 @@ describe('getPositionsArray()', () => {
   })
 })
 
-describe('gameboard()', () => {
+describe('gameboard: A empty board receives attacks.', () => {
   const game = gameboard()
   const grid1 = {
     1: {
@@ -596,7 +596,7 @@ describe('gameboard()', () => {
   })
 })
 
-describe('insertShip()', () => {
+describe('insertShip: Inserts ships on the board.', () => {
   const game = gameboard()
   const startCoordinate1 = ['B', 6]
   const orientation1 = 'horizontal'
@@ -606,12 +606,14 @@ describe('insertShip()', () => {
   const orientation3 = 'vertical'
   const startCoordinate4 = ['D', 8]
   const orientation4 = 'vertical'
+  const startCoordinate5 = ['I', 4]
+  const orientation5 = 'vertical'
   const grid = {
     1: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     2: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     3: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
-    4: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
-    5: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    4: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '5', J: '_' },
+    5: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '5', J: '_' },
     6: { A: '_', B: '1', C: '1', D: '1', E: '1', F: '1', G: '_', H: '_', I: '_', J: '_' },
     7: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     8: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
@@ -622,6 +624,7 @@ describe('insertShip()', () => {
   insertShip(game, 2, startCoordinate2, orientation2)
   insertShip(game, 3, startCoordinate3, orientation3)
   insertShip(game, 4, startCoordinate4, orientation4)
+  insertShip(game, 5, startCoordinate5, orientation5)
   test('insertShip f() locates multiple ships on the board.', () => {
     expect(game.grid).toEqual(grid)
   })
@@ -637,4 +640,82 @@ describe('insertShip()', () => {
   test(`insertShip f() assigns node values to the game obj parameter 'ship4'.`, () => {
     expect(game.ship4.length).toEqual(3)
   })
+})
+
+describe('gameboard: Ships receive attacks & and sink.', () => {
+  const game = gameboard()
+  insertShip(game, 1, ['B', 6], 'horizontal')
+  insertShip(game, 2, ['E', 9], 'horizontal')
+  insertShip(game, 3, ['C', 1], 'vertical')
+  insertShip(game, 4, ['D', 8], 'vertical')
+  insertShip(game, 5, ['I', 4], 'vertical')
+  const grid1 = {
+    1: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    2: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    3: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    4: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '5', J: '_' },
+    5: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '5', J: '_' },
+    6: { A: '_', B: '1', C: '1', D: '1', E: '1', F: '1', G: '_', H: '_', I: '_', J: '_' },
+    7: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    8: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    9: { A: '_', B: '_', C: '_', D: '4', E: '2', F: '2', G: '2', H: '2', I: '_', J: '_' },
+    10:{ A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+  }
+  const grid2 = {
+    1: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    2: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    3: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: 'X', H: '_', I: '_', J: '_' },
+    4: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: 'X', J: '_' },
+    5: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: 'X', I: 'X', J: '_' },
+    6: { A: '_', B: 'X', C: '1', D: 'X', E: '1', F: '1', G: '_', H: '_', I: '_', J: '_' },
+    7: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    8: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+    9: { A: '_', B: '_', C: '_', D: '4', E: '2', F: '2', G: '2', H: '2', I: '_', J: '_' },
+    10:{ A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
+  }
+
+  test('Initial board is setup with 5 ships.', () => {
+    expect(game.grid).toEqual(grid1)
+  })
+  test('Ship 1 receives attacks.', () => {
+    game.receiveAttack(['B', '6'])
+    game.receiveAttack(['D', '6'])
+    expect(game.ship1.hits).toEqual(2)
+    expect(game.ship1.isSunk()).toEqual(false)
+  })
+  test('Ship 5 sinks after two attacks.', () => {
+    game.receiveAttack(['I', '4'])
+    game.receiveAttack(['I', '5'])
+    expect(game.ship5.isSunk()).toEqual(true)
+  })
+  test('Board is affected as expected after attacks.', () => {
+    game.receiveAttack(['B', '6'])
+    game.receiveAttack(['D', '6'])
+    game.receiveAttack(['I', '4'])
+    game.receiveAttack(['I', '5'])
+    game.receiveAttack(['G', '3'])
+    game.receiveAttack(['H', '5'])
+    expect(game.grid).toEqual(grid2)
+  })
+  test(`Unattacked ships don't have hits.`, () => {
+    game.receiveAttack(['B', '6'])
+    game.receiveAttack(['D', '6'])
+    game.receiveAttack(['I', '4'])
+    game.receiveAttack(['I', '5'])
+    game.receiveAttack(['G', '3'])
+    game.receiveAttack(['H', '5'])
+    expect(game.ship1.hits).toEqual(2)
+    expect(game.ship5.hits).toEqual(2)
+    expect(game.ship2.hits).toEqual(0)
+  })
+  /* test('Throws error when attacking a previously attacked cell.', () => {
+    game.receiveAttack(['B', '6'])
+    game.receiveAttack(['D', '6'])
+    game.receiveAttack(['I', '4'])
+    game.receiveAttack(['I', '5'])
+    game.receiveAttack(['G', '3'])
+    game.receiveAttack(['H', '5'])
+    expect(game.grid).toEqual(grid2)
+    expect(game.receiveAttack(['D', '6'])).toThrow('Cell has already been attacked')
+  }) */
 })
