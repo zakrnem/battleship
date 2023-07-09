@@ -56,11 +56,11 @@ export function gameboard() {
     },
     locateShipCell: function (shipNumber, coordinates) {
       const letterCoordinate = coordinates[0]
-      const numberCoordinate =coordinates[1]
+      const numberCoordinate = coordinates[1]
       let boardCell = this.grid[numberCoordinate][letterCoordinate]
-  
+
       if (boardCell === '_') {
-        this.grid[numberCoordinate][letterCoordinate] = shipNumber
+        this.grid[numberCoordinate][letterCoordinate] = shipNumber.toString()
       } else if (typeof boardCell === 'object') {
         throw new Error(`There's another ship in this location`)
       }
@@ -117,9 +117,7 @@ export function getPositionsArray(length, startCoordinate, orientation) {
       for (let i = 0; i < length; i++) {
         if (i === 0) positionsArray.push([letterCoordinate, numberCoordinate])
         else {
-          letterCoordinate = String.fromCharCode(
-            letterCoordinate[0].charCodeAt(0) + 1
-          )
+          letterCoordinate = String.fromCharCode(letterCoordinate[0].charCodeAt(0) + 1)
           coordinates = checkCoordinates(letterCoordinate, numberCoordinate)
           positionsArray.push(coordinates)
         }
@@ -148,8 +146,7 @@ export function checkCoordinates(letterCoordinate, numberCoordinate) {
     letterCoordinate.charCodeAt() < 65 || letterCoordinate.charCodeAt() > 74
       ? null
       : letterCoordinate
-  numberCoordinate =
-    numberCoordinate > 10 || numberCoordinate < 1 ? null : numberCoordinate
+  numberCoordinate = numberCoordinate > 10 || numberCoordinate < 1 ? null : numberCoordinate
   return letterCoordinate === null || numberCoordinate === null
     ? null
     : [letterCoordinate, numberCoordinate]
