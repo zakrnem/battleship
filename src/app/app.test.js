@@ -585,13 +585,13 @@ describe('gameboard: A empty board receives attacks.', () => {
       J: '_',
     },
   }
-  test('Executing the gameboard f() creates a new object with the desired grid.', () => {
+  test('Creates a new object with the desired board.', () => {
     expect(game.grid).toEqual(grid1)
   })
-  test('Calling the receiveAttack f() of the game obj with an attackCoordinate produces the desired grid.', () => {
+  test('Receiving an attack modifies the board as expected.', () => {
     expect(game.receiveAttack(attackCoordinate)).toEqual(grid2)
   })
-  test('Executing the game obj method locateShip() inserts one block of a ship in one cell of the grid.', () => {
+  test('Using the method locateShip() inserts one block of a ship in one cell of the board.', () => {
     expect(game.locateShipCell(shipNumber, shipCoordinate)).toEqual(grid3)
   })
 })
@@ -625,19 +625,19 @@ describe('insertShip: Inserts ships on the board.', () => {
   insertShip(game, 3, startCoordinate3, orientation3)
   insertShip(game, 4, startCoordinate4, orientation4)
   insertShip(game, 5, startCoordinate5, orientation5)
-  test('insertShip f() locates multiple ships on the board.', () => {
+  test('Locates multiple ships on the board.', () => {
     expect(game.grid).toEqual(grid)
   })
-  test(`insertShip f() assigns node values to the game obj parameter 'ship1'.`, () => {
+  test(`Assigns node values to the game obj parameter 'ship1'.`, () => {
     expect(game.ship1.length).toEqual(5)
   })
-  test(`insertShip f() assigns node values to the game obj parameter 'ship2'.`, () => {
+  test(`Assigns node values to the game obj parameter 'ship2'.`, () => {
     expect(game.ship2.length).toEqual(4)
   })
-  test(`insertShip f() assigns node values to the game obj parameter 'ship3'.`, () => {
+  test(`Assigns node values to the game obj parameter 'ship3'.`, () => {
     expect(game.ship3.length).toEqual(3)
   })
-  test(`insertShip f() assigns node values to the game obj parameter 'ship4'.`, () => {
+  test(`Assigns node values to the game obj parameter 'ship4'.`, () => {
     expect(game.ship4.length).toEqual(3)
   })
 })
@@ -711,10 +711,10 @@ describe('gameboard: Ships receive attacks & and sink.', () => {
       game.receiveAttack(['G', '3'])
     }).toThrow('Cell has already been attacked')
   })
-  test(`allShipsSunk f() returns false when all ships haven't been sunk`, () => {
+  test(`Informs correctly when all ships haven't been sunk`, () => {
     expect(game.allShipsSunk()).toEqual(false)
   })
-  test(`allShipsSunk f() returns true when all ships have been sunk`, () => {
+  test(`Informs correctly when all ships have been sunk`, () => {
     game.ship1.hit()
     game.ship1.hit()
     game.ship1.hit()
@@ -735,7 +735,6 @@ describe('gameboard: Ships receive attacks & and sink.', () => {
     expect(game.ship4.hits).toEqual(3)
     expect(game.ship5.hits).toEqual(2)
     expect(game.allShipsSunk()).toEqual(true)
-
   })
   
 })

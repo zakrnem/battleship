@@ -1,2 +1,7 @@
-
+1. Play against computer:
+    Create board for player.
+    Create board for PC.
+        Assign ship positions randomly.
+        PC will make random moves.
+    Create main game loop and module for DOM interaction.
         
