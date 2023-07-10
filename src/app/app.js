@@ -85,7 +85,15 @@ export function gameboard() {
       }
       return this.grid
     },
-    allShipsSunk: function () {},
+    allShipsSunk: function () {
+      return this.ship1.isSunk() &&
+        this.ship2.isSunk() &&
+        this.ship3.isSunk() &&
+        this.ship4.isSunk() &&
+        this.ship5.isSunk()
+        ? true
+        : false
+    },
   }
 }
 
