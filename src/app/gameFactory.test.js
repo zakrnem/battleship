@@ -1,7 +1,4 @@
-import {
-  ship,
-  gameboard,
-} from './gameFactory'
+import { ship, gameboard } from './gameFactory'
 
 import { insertShip } from './insertShip'
 
@@ -500,5 +497,4 @@ describe('Ships receive attacks & and sink.', () => {
     expect(game.ship5.hits).toEqual(2)
     expect(game.allShipsSunk()).toEqual(true)
   })
-  
 })

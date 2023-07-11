@@ -1,4 +1,4 @@
-import { checkCoordinates } from "./checkCoordinates"
+import { checkCoordinates } from './checkCoordinates'
 
 export function ship(length) {
   return {
@@ -17,10 +17,10 @@ export function ship(length) {
 export function gameboard() {
   function buildGrid() {
     const boardObj = {}
-  
+
     for (let row = 1; row <= 10; row++) {
       boardObj[row] = {}
-  
+
       for (
         let column = 'A';
         column <= 'J';

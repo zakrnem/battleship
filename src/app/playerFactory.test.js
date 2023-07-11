@@ -1,4 +1,4 @@
-import { player } from "./playerFactory"
+import { player } from './playerFactory'
 
 describe('Creates new players.', () => {
   const player1 = player('human')
