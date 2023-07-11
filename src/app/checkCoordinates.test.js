@@ -1,6 +1,6 @@
 import { checkCoordinates } from "./checkCoordinates"
 
-describe('checkCoordinates: Checks whether a specific coordinate is inside the board.', () => {
+describe('Checks whether a specific coordinate is inside the board.', () => {
     test('Check coordinates function returns the same values when input is valid.', () => {
       expect(checkCoordinates('D', 10)).toEqual(['D', 10])
       expect(checkCoordinates('A', 5)).toEqual(['A', 5])

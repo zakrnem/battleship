@@ -1,11 +1,11 @@
 import {
   ship,
   gameboard,
-} from './gameObj'
+} from './gameFactory'
 
 import { insertShip } from './insertShip'
 
-describe('ship Factory', () => {
+describe('Builds ship objects.', () => {
   const ship1 = ship(2)
   const ship2 = ship(5)
   function executeMultipleTimes() {
@@ -24,7 +24,7 @@ describe('ship Factory', () => {
     expect(executeMultipleTimes()).toEqual(true))
 })
 
-describe('gameboard: A empty board receives attacks.', () => {
+describe('A empty board receives attacks.', () => {
   const game = gameboard()
   const grid1 = {
     1: {
@@ -406,7 +406,7 @@ describe('gameboard: A empty board receives attacks.', () => {
   })
 })
 
-describe('gameboard: Ships receive attacks & and sink.', () => {
+describe('Ships receive attacks & and sink.', () => {
   const game = gameboard()
   insertShip(game, 1, ['B', 6], 'horizontal')
   insertShip(game, 2, ['E', 9], 'horizontal')

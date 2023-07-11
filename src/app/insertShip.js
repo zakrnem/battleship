@@ -1,4 +1,4 @@
-import { ship } from "./gameObj"
+import { ship } from "./gameFactory"
 import { checkCoordinates } from "./checkCoordinates"
 
 export function insertShip(gameObj, shipNumber, startCoordinate, orientation) {

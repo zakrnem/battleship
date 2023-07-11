@@ -1,7 +1,7 @@
 import { insertShip } from './insertShip'
-import { gameboard } from './gameObj'
+import { gameboard } from './gameFactory'
 
-describe('insertShip: Inserts ships on the board.', () => {
+describe('Inserts ships on the board.', () => {
     const game = gameboard()
     const startCoordinate1 = ['B', 6]
     const orientation1 = 'horizontal'
