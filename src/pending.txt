@@ -4,4 +4,27 @@
         Assign ship positions randomly.
         PC will make random moves.
     Create main game loop and module for DOM interaction.
-        
+
+
+BUILD A RANDOM BOARD
+    For the start coordinates:
+        We'll create two random numbers, each of them between 1 and 10.
+        The first number will be assigned to a letter.
+        The second will be the number part of the coordinate.
+    For the orientation:
+        We'll create a random number between 0 and 1.
+        0 will represent horizontal.
+        1 will represent vertical.
+    We'll need a iterative f() for inserting the 5 ships:
+        After creating the random start coordinates and orientation we'll have to check
+            if the ship[i] was inserted successfully.
+            A ship won't be inserted in two cases:
+                If part of the ship ends up outside the board.
+                If a ship overlaps another one.
+        Once a ship has been successfully inserted the app will proceed to insert the following
+            ships until the 5 of them are on the board.
+
+BUILD USER BOARD
+    The user will input the start coordinate.
+    Then the orientation.
+    In order for every ship until the 5 of them are on the board.

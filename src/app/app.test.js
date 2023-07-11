@@ -1,11 +1,10 @@
 import {
   ship,
-  buildGrid,
-  getPositionsArray,
-  checkCoordinates,
   gameboard,
-  insertShip,
-} from './app'
+} from './gameObj'
+
+import { checkCoordinates } from './checkCoordinates'
+import { insertShip } from './insertShip'
 
 describe('ship Factory', () => {
   const ship1 = ship(2)
@@ -26,133 +25,6 @@ describe('ship Factory', () => {
     expect(executeMultipleTimes()).toEqual(true))
 })
 
-describe('buildGrid: Builds the gameboard.', () => {
-  const board = buildGrid()
-  const boardResult = {
-    1: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-    2: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-    3: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-    4: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-    5: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-    6: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-    7: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-    8: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-    9: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-    10: {
-      A: '_',
-      B: '_',
-      C: '_',
-      D: '_',
-      E: '_',
-      F: '_',
-      G: '_',
-      H: '_',
-      I: '_',
-      J: '_',
-    },
-  }
-  test('The gameboard grid is built sucessfully.', () => expect(board).toEqual(boardResult))
-})
-
 describe('checkCoordinates: Checks whether a specific coordinate is inside the board.', () => {
   test('Check coordinates function returns the same values when input is valid.', () => {
     expect(checkCoordinates('D', 10)).toEqual(['D', 10])
@@ -164,53 +36,6 @@ describe('checkCoordinates: Checks whether a specific coordinate is inside the b
     expect(checkCoordinates('W', 4)).toEqual(null)
     expect(checkCoordinates('A', 13)).toEqual(null)
     expect(checkCoordinates('F', 12)).toEqual(null)
-  })
-})
-
-describe('getPositionsArray: Gets the positions of a ship.', () => {
-  const start1 = ['B', 2]
-  const shipLength1 = 5
-  const positionsArray1 = [
-    ['B', 2],
-    ['C', 2],
-    ['D', 2],
-    ['E', 2],
-    ['F', 2],
-  ]
-  const shipLength2 = 4
-  const positionsArray2 = [
-    ['B', 2],
-    ['B', 3],
-    ['B', 4],
-    ['B', 5],
-  ]
-  const start2 = ['B', 10]
-  const start3 = ['I', 3]
-  const start4 = ['A', 12]
-  const start5 = ['K', 1]
-  test('Builds the ship positions array for horizontal orientation.', () =>
-    expect(getPositionsArray(shipLength1, start1, 'horizontal')).toEqual(positionsArray1))
-  test('Builds the ship positions array for vertical orientation.', () =>
-    expect(getPositionsArray(shipLength2, start1, 'vertical')).toEqual(positionsArray2))
-  test('Throws error when part of the ship is outside the board vertically.', () => {
-    expect(() => {
-      getPositionsArray(shipLength1, start2, 'vertical')
-    }).toThrow('Part of the ship is outside the board')
-  })
-  test('Throws error when part of the ship is outside the board horizontally.', () => {
-    expect(() => {
-      getPositionsArray(shipLength1, start3, 'horizontal')
-    }).toThrow('Part of the ship is outside the board')
-  })
-  test('Throws error when start of the ship is outside the board vertically.', () => {
-    expect(() => {
-      getPositionsArray(shipLength1, start4, 'vertical')
-    }).toThrow('Start position is outside of board')
-  })
-  test('Throws error when start of the ship is outside the board horizontally.', () => {
-    expect(() => {
-      getPositionsArray(shipLength1, start5, 'vertical')
-    }).toThrow('Start position is outside of board')
   })
 })
 
