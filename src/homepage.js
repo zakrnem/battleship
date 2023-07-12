@@ -1,5 +1,4 @@
 import { footer } from "footer-zkrnem";
-import { doc } from "prettier";
 
 export function homepage() {
     footer()
