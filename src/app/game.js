@@ -4,10 +4,12 @@ import { insertShip } from "./insertShip"
 export function userBoard() {
     const game = gameboard('human')
     insertShip(game, 1, ['B', 6], 'horizontal')
-    insertShip(game, 2, ['E', 9], 'horizontal')
+    insertShip(game, 2, ['F', 9], 'horizontal')
     insertShip(game, 3, ['C', 1], 'vertical')
     insertShip(game, 4, ['D', 8], 'vertical')
     insertShip(game, 5, ['I', 4], 'vertical')
+    game.receiveAttack(['A', 1])
+    game.receiveAttack(['H', 6])
     return game
 }
 
@@ -18,6 +20,8 @@ export function pcBoard() {
     insertShip(game, 3, ['J', 6], 'vertical')
     insertShip(game, 4, ['G', 1], 'vertical')
     insertShip(game, 5, ['I', 4], 'vertical')
+    game.receiveAttack(['F', 4])
+    game.receiveAttack(['G', 8])
     return game
 }
 

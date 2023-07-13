@@ -5,5 +5,9 @@ import { homepage } from "./homepage"
 homepage()
 
 import { userBoardListener, pcBoardListener } from "./boardsListener"
-userBoardListener()
-pcBoardListener()
+/* userBoardListener()
+pcBoardListener() */
+
+import { insertUserBoard, insertComputerBoard } from "./app/printBoard"
+insertUserBoard()
+insertComputerBoard()
