@@ -4,5 +4,6 @@ import "./style.css"
 import { homepage } from "./homepage"
 homepage()
 
-import { userBoardListener } from "./userListener"
+import { userBoardListener, pcBoardListener } from "./boardsListener"
 userBoardListener()
+pcBoardListener()

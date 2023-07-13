@@ -10,6 +10,16 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/boardsListener.js":
+/*!*******************************!*\
+  !*** ./src/boardsListener.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   pcBoardListener: () => (/* binding */ pcBoardListener),\n/* harmony export */   userBoardListener: () => (/* binding */ userBoardListener)\n/* harmony export */ });\nfunction userBoardListener() {\n  const board = document.querySelector('.user-board');\n  board.addEventListener('mouseover', e => {\n    e.target.style.transition = \"background-color 0.2s ease-in\";\n    e.target.style.backgroundColor = '#d4d4c0';\n    setTimeout(() => {\n      e.target.style.transition = \"background-color 0.2s ease-in\";\n      e.target.style.backgroundColor = '';\n    }, 600);\n  });\n}\nfunction pcBoardListener() {\n  const board = document.querySelector('.pc-board');\n  board.addEventListener('mouseover', e => {\n    e.target.style.transition = \"background-color 0.2s ease-in\";\n    e.target.style.backgroundColor = '#d4d4c0';\n    setTimeout(() => {\n      e.target.style.transition = \"background-color 0.2s ease-in\";\n      e.target.style.backgroundColor = '';\n    }, 600);\n  });\n}\n\n//# sourceURL=webpack://battleship/./src/boardsListener.js?");
+
+/***/ }),
+
 /***/ "./src/homepage.js":
 /*!*************************!*\
   !*** ./src/homepage.js ***!
@@ -26,17 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_footer_zkrnem_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/footer-zkrnem/styles.css */ \"./node_modules/footer-zkrnem/styles.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _homepage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./homepage */ \"./src/homepage.js\");\n/* harmony import */ var _userListener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./userListener */ \"./src/userListener.js\");\n\n\n\n(0,_homepage__WEBPACK_IMPORTED_MODULE_2__.homepage)();\n\n(0,_userListener__WEBPACK_IMPORTED_MODULE_3__.userBoardListener)();\n\n//# sourceURL=webpack://battleship/./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/userListener.js":
-/*!*****************************!*\
-  !*** ./src/userListener.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   userBoardListener: () => (/* binding */ userBoardListener)\n/* harmony export */ });\nfunction userBoardListener() {\n  const board = document.querySelector('.user-board');\n  board.addEventListener('mouseover', e => {\n    e.target.style.transition = \"background-color 0.2s ease-in\";\n    e.target.style.backgroundColor = '#d4d4c0';\n    setTimeout(() => {\n      e.target.style.transition = \"background-color 0.2s ease-in\";\n      e.target.style.backgroundColor = '';\n    }, 600);\n  });\n}\n\n//# sourceURL=webpack://battleship/./src/userListener.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_footer_zkrnem_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/footer-zkrnem/styles.css */ \"./node_modules/footer-zkrnem/styles.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _homepage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./homepage */ \"./src/homepage.js\");\n/* harmony import */ var _boardsListener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./boardsListener */ \"./src/boardsListener.js\");\n\n\n\n(0,_homepage__WEBPACK_IMPORTED_MODULE_2__.homepage)();\n\n(0,_boardsListener__WEBPACK_IMPORTED_MODULE_3__.userBoardListener)();\n(0,_boardsListener__WEBPACK_IMPORTED_MODULE_3__.pcBoardListener)();\n\n//# sourceURL=webpack://battleship/./src/index.js?");
 
 /***/ }),
 
