@@ -41,7 +41,7 @@ export function insertComputerBoard() {
         const DOMcell = DOMgrid[i]
 
         if (!isNaN(ObjCellNumber)) {
-            DOMcell.style.backgroundColor = 'blue'
+            DOMcell.style.backgroundColor = 'var(--ship-color)'
         }
         if (ObjCell === 'X') {
             DOMcell.style.backgroundColor = 'red'
