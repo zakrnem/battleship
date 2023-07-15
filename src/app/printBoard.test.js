@@ -17,7 +17,7 @@ describe('Flattens the grid object.', () => {
         '_'
       ]
     test(`Game object is behaving as expected`, () => {
-        expect(game.user.user).toEqual('human')
+        expect(game.user.ship5.length).toEqual(2)
         expect(game.computer.ship1.length).toEqual(5)
     })
     test(`Builds a flattened array from the player's grid`, () => {

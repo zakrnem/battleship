@@ -394,9 +394,6 @@ describe('A empty board receives attacks.', () => {
   test('Creates a new object with the desired board.', () => {
     expect(game.grid).toEqual(grid1)
   })
-  test('Creates a new object with the desired player name.', () => {
-    expect(game.user).toEqual('human')
-  })
   test('Receiving an attack modifies the board as expected.', () => {
     expect(game.receiveAttack(attackCoordinate)).toEqual(grid2)
   })

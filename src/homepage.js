@@ -22,6 +22,7 @@ export function homepage() {
         userBoard.className = 'user-board'
             for (let i = 0; i < 100; i++) {
                 const userCell = document.createElement('div')
+                userCell.id = 'user' + i
                 userCell.className = 'user cell'
                 userBoard.append(userCell)
             }
@@ -41,6 +42,7 @@ export function homepage() {
         pcBoard.className = 'pc-board'
             for (let j = 0; j < 100; j++) {
                 const pcCell = document.createElement('div')
+                pcCell.id = 'pc' + j
                 pcCell.className = 'pc cell'
                 pcBoard.append(pcCell)
             }

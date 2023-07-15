@@ -14,7 +14,7 @@ export function ship(length) {
   }
 }
 
-export function gameboard(playerName) {
+export function gameboard() {
   function buildGrid() {
     const boardObj = {}
 
@@ -32,7 +32,6 @@ export function gameboard(playerName) {
     return boardObj
   }
   return {
-    user: playerName,
     grid: buildGrid(),
     ship1: null,
     ship2: null,

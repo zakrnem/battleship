@@ -1,12 +1,13 @@
+import { getCoordinatesFromId } from "./app/coordinateFromId"
+import { game } from "./app/game"
+
 export function boardsListener() {
-    boardListener('user')
-    boardListener('pc')
+    boardListener()
 }
 
-function boardListener(boardSelector) {
-    boardSelector = (boardSelector === 'user') ? '.user-board' : '.pc-board'
-    const board = document.querySelector(boardSelector)
-    board.addEventListener('mouseover', (e) => {
+function boardListener() {
+    const pcBoard = document.querySelector('.pc-board')
+    pcBoard.addEventListener('mouseover', (e) => {
         if (e.target.style.backgroundColor === '') {
             e.target.style.transition = "background-color 0.2s ease-in"
             e.target.style.backgroundColor = 'var(--mouseover)'
@@ -16,10 +17,13 @@ function boardListener(boardSelector) {
             }, 300)
         }
     })
-    board.addEventListener('click', (e) => {
-        //Player board shouldn't receive attacks from clicks
+    pcBoard.addEventListener('click', (e) => {
         if (e.target.style.backgroundColor !== 'var(--ship-color)') {
+            const idNumber = parseInt(e.target.id.match(/\d+/)[0])
+            const attackCoordinates = getCoordinatesFromId(idNumber)
+            game('attack', attackCoordinates)
             e.target.style.backgroundColor = 'var(--attack-color)'
         }
     })
 }
+

@@ -1,27 +1,27 @@
 import { gameboard } from "./gameFactory"
 import { insertShip } from "./insertShip"
-
 import { insertBoard } from "./printBoard"
 
-//We need to initialize the board obects for each player once and be able to edit them later
+const board = buildBoard()
 
-export function game(typeOfOperation) {
+export function game(typeOfOperation, attackCoordinates) {
     if (typeOfOperation === 'initialize') {
-        const board1 = userBoard()
-        const board2 = pcBoard()
-        insertBoard('user', board1)
-        insertBoard('pc', board2)
+        insertBoard('user', board.user)
+        insertBoard('pc', board.computer)
     }
     if (typeOfOperation === 'attack') {
-
+        console.log(attackCoordinates)
+        board.computer.receiveAttack(attackCoordinates)
+        console.log(board.computer.grid)
     }
 }
 
 export function buildBoard() {
     const game = {
-        user: gameboard('human'),
-        computer: gameboard('computer')
+        user: gameboard(),
+        computer: gameboard()
     }
+    //Build initial user board
     insertShip(game.user, 1, ['B', 6], 'horizontal')
     insertShip(game.user, 2, ['F', 9], 'horizontal')
     insertShip(game.user, 3, ['C', 1], 'vertical')
@@ -30,6 +30,7 @@ export function buildBoard() {
     game.user.receiveAttack(['A', 1])
     game.user.receiveAttack(['H', 6])
 
+    //Build initial computer board
     insertShip(game.computer, 1, ['B', 6], 'horizontal')
     insertShip(game.computer, 2, ['B', 2], 'horizontal')
     insertShip(game.computer, 3, ['J', 6], 'vertical')
