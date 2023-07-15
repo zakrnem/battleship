@@ -395,7 +395,8 @@ describe('A empty board receives attacks.', () => {
     expect(game.grid).toEqual(grid1)
   })
   test('Receiving an attack modifies the board as expected.', () => {
-    expect(game.receiveAttack(attackCoordinate)).toEqual(grid2)
+    game.receiveAttack(attackCoordinate)
+    expect(game.grid).toEqual(grid2)
   })
   test('Using the method locateShip() inserts one block of a ship in one cell of the board.', () => {
     expect(game.locateShipCell(shipNumber, shipCoordinate)).toEqual(grid3)

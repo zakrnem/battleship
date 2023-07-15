@@ -10,9 +10,7 @@ export function game(typeOfOperation, attackCoordinates) {
         insertBoard('pc', board.computer)
     }
     if (typeOfOperation === 'attack') {
-        console.log(attackCoordinates)
         board.computer.receiveAttack(attackCoordinates)
-        console.log(board.computer.grid)
     }
 }
 

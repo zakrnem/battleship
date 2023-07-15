@@ -18,7 +18,10 @@ function boardListener() {
         }
     })
     pcBoard.addEventListener('click', (e) => {
-        if (e.target.style.backgroundColor !== 'var(--ship-color)') {
+        if (e.target.style.backgroundColor !== 'var(--attack-color)') {
+            if (e.target.style.backgroundColor === 'var(--ship-color)') {
+                e.target.textContent = '■'
+            }
             const idNumber = parseInt(e.target.id.match(/\d+/)[0])
             const attackCoordinates = getCoordinatesFromId(idNumber)
             game('attack', attackCoordinates)

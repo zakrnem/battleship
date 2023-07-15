@@ -72,7 +72,7 @@ export function gameboard() {
         }
         this.grid[numberCoordinate][letterCoordinate] = 'X'
       }
-      return this.grid
+      //this.allShipsSunk() We need to notify
     },
     locateShipCell: function (shipNumber, coordinates) {
       const letterCoordinate = coordinates[0]
