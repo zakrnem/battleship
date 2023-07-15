@@ -1,9 +1,9 @@
-import { userBoard } from "./game";
+import { buildBoard } from "./game";
 import { arrayFromBoard } from "./printBoard";
 
 describe('Flattens the grid object.', () => {
-    const game = userBoard()
-    const flatArr = arrayFromBoard(game.grid)
+    const game = buildBoard()
+    const flatArr = arrayFromBoard(game.user.grid)
     const expectedArr = [
         'X', '_', '3', '_', '_', '_', '_', '_', '_', '_', '_',
         '_', '3', '_', '_', '_', '_', '_', '_', '_', '_', '_',
@@ -17,8 +17,8 @@ describe('Flattens the grid object.', () => {
         '_'
       ]
     test(`Game object is behaving as expected`, () => {
-        expect(game.user).toEqual('human')
-        expect(game.ship1.length).toEqual(5)
+        expect(game.user.user).toEqual('human')
+        expect(game.computer.ship1.length).toEqual(5)
     })
     test(`Builds a flattened array from the player's grid`, () => {
         expect(flatArr).toEqual(expectedArr)

@@ -8,4 +8,4 @@ import { boardsListener } from "./boardsListener"
 boardsListener()
 
 import { game } from "./app/game"
-game()
+game('initialize')
