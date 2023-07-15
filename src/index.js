@@ -4,9 +4,8 @@ import "./style.css"
 import { homepage } from "./homepage"
 homepage()
 
-import { userBoardListener, pcBoardListener } from "./boardsListener"
-userBoardListener()
-pcBoardListener()
+import { boardsListener } from "./boardsListener"
+boardsListener()
 
-import { insertBoards } from "./app/printBoard"
-insertBoards()
+import { game } from "./app/game"
+game()

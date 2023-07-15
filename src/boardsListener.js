@@ -1,12 +1,9 @@
-export function userBoardListener() {
-    mouseover('user')
+export function boardsListener() {
+    boardListener('user')
+    boardListener('pc')
 }
 
-export function pcBoardListener() {
-    mouseover('pc')
-}
-
-function mouseover(boardSelector) {
+function boardListener(boardSelector) {
     boardSelector = (boardSelector === 'user') ? '.user-board' : '.pc-board'
     const board = document.querySelector(boardSelector)
     board.addEventListener('mouseover', (e) => {
@@ -19,13 +16,10 @@ function mouseover(boardSelector) {
             }, 300)
         }
     })
-}
-
-function click(boardSelector) {
-    boardSelector = (boardSelector === 'user') ? '.user-board' : '.pc-board'
-    const board = document.querySelector(boardSelector)
     board.addEventListener('click', (e) => {
-        if (e.target.style.backgroundColor === '') {
+        //Player board shouldn't receive attacks from clicks
+        if (e.target.style.backgroundColor !== 'var(--ship-color)') {
+            e.target.style.backgroundColor = 'var(--attack-color)'
         }
     })
 }

@@ -1,6 +1,17 @@
 import { gameboard } from "./gameFactory"
 import { insertShip } from "./insertShip"
 
+import { insertBoard } from "./printBoard"
+
+//We need to initialize the board obects for each player once and be able to edit them later
+
+export function game() {
+    const board1 = userBoard()
+    const board2 = pcBoard()
+    insertBoard('user', board1)
+    insertBoard('pc', board2)
+}
+
 export function userBoard() {
     const game = gameboard('human')
     insertShip(game, 1, ['B', 6], 'horizontal')
