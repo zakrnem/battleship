@@ -11,30 +11,22 @@ export function arrayFromBoard(board) {
     return output
 }
 
-export function insertUserBoard() {
-    const userGrid = userBoard().grid
-    const boardArray = arrayFromBoard(userGrid)
-    const DOMgrid = document.querySelectorAll('.user.cell')
-
-    for (let i = 0; i < 100; i++) {
-        const ObjCell = boardArray[i]
-        const ObjCellNumber = parseInt(ObjCell)
-        const DOMcell = DOMgrid[i]
-
-        if (!isNaN(ObjCellNumber)) {
-            DOMcell.style.backgroundColor = 'blue'
-        }
-        if (ObjCell === 'X') {
-            DOMcell.style.backgroundColor = 'red'
-        }   
-    }
+export function insertBoards() {
+    insertBoard('user')
+    insertBoard('pc')
 }
 
-export function insertComputerBoard() {
-    const pcGrid = pcBoard().grid
-    const boardArray = arrayFromBoard(pcGrid)
-    const DOMgrid = document.querySelectorAll('.pc.cell')
+function insertBoard(boardSelector) {
+    let boardArray
+    let DOMgrid
 
+    if (boardSelector === 'user') {
+        boardArray = arrayFromBoard(userBoard().grid)
+        DOMgrid = document.querySelectorAll('.user.cell')
+    } else {
+        boardArray = arrayFromBoard(pcBoard().grid)
+        DOMgrid = document.querySelectorAll('.pc.cell')
+    }
     for (let i = 0; i < 100; i++) {
         const ObjCell = boardArray[i]
         const ObjCellNumber = parseInt(ObjCell)
@@ -44,7 +36,7 @@ export function insertComputerBoard() {
             DOMcell.style.backgroundColor = 'var(--ship-color)'
         }
         if (ObjCell === 'X') {
-            DOMcell.style.backgroundColor = 'red'
+            DOMcell.style.backgroundColor = 'var(--attack-color'
         }   
     }
 }

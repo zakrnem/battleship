@@ -8,6 +8,5 @@ import { userBoardListener, pcBoardListener } from "./boardsListener"
 userBoardListener()
 pcBoardListener()
 
-import { insertUserBoard, insertComputerBoard } from "./app/printBoard"
-insertUserBoard()
-insertComputerBoard()
+import { insertBoards } from "./app/printBoard"
+insertBoards()

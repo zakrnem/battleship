@@ -16,7 +16,7 @@ function mouseover(boardSelector) {
             setTimeout(() => {
                 e.target.style.transition = "background-color 0.2s ease-in"
                 e.target.style.backgroundColor = ''
-            }, 600)
+            }, 300)
         }
     })
 }
