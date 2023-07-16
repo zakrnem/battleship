@@ -49,6 +49,9 @@ export function gameboard() {
       if (initialBoardCell === 'X') {
         throw new Error('Cell has already been attacked')
       }
+      if (!isNaN(parseInt(initialBoardCell))) {
+        
+      }
       switch (true) {
         case boardCell === '1':
           this.ship1.hit()
