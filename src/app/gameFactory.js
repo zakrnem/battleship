@@ -72,7 +72,16 @@ export function gameboard() {
         }
         this.grid[numberCoordinate][letterCoordinate] = 'X'
       }
-      //this.allShipsSunk() We need to notify
+      if (this.ship1 === null ||
+        this.ship2 === null ||
+        this.ship3 === null ||
+        this.ship4 === null ||
+        this.ship5 === null) {
+          return false
+        } else {
+          return this.allShipsSunk()
+        }
+      
     },
     locateShipCell: function (shipNumber, coordinates) {
       const letterCoordinate = coordinates[0]

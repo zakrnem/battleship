@@ -1,6 +1,7 @@
 import { gameboard } from "./gameFactory"
 import { insertShip } from "./insertShip"
 import { insertBoard } from "./printBoard"
+import { reportStatus } from "./reportStatus"
 
 const board = buildBoard()
 
@@ -10,7 +11,8 @@ export function game(typeOfOperation, attackCoordinates) {
         insertBoard('pc', board.computer)
     }
     if (typeOfOperation === 'attack') {
-        board.computer.receiveAttack(attackCoordinates)
+        let areAllShipsSunk = board.computer.receiveAttack(attackCoordinates)
+        reportStatus(areAllShipsSunk)
     }
 }
 
