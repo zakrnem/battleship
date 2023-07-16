@@ -49,38 +49,34 @@ export function gameboard() {
       if (initialBoardCell === 'X') {
         throw new Error('Cell has already been attacked')
       }
-      if (boardCell === '_') {
-        boardCell = 'X'
+      switch (true) {
+        case boardCell === '1':
+          this.ship1.hit()
+          break
+        case boardCell === '2':
+          this.ship2.hit()
+          break
+        case boardCell === '3':
+          this.ship3.hit()
+          break
+        case boardCell === '4':
+          this.ship4.hit()
+          break
+        case boardCell === '5':
+          this.ship5.hit()
+          break
       }
-      if (typeof parseInt(boardCell) !== 'NaN') {
-        switch (true) {
-          case boardCell === '1':
-            this.ship1.hit()
-            break
-          case boardCell === '2':
-            this.ship2.hit()
-            break
-          case boardCell === '3':
-            this.ship3.hit()
-            break
-          case boardCell === '4':
-            this.ship4.hit()
-            break
-          case boardCell === '5':
-            this.ship5.hit()
-            break
-        }
-        this.grid[numberCoordinate][letterCoordinate] = 'X'
-      }
+      this.grid[numberCoordinate][letterCoordinate] = 'X'
+        
       if (this.ship1 === null ||
         this.ship2 === null ||
         this.ship3 === null ||
         this.ship4 === null ||
         this.ship5 === null) {
           return false
-        } else {
+      } else {
           return this.allShipsSunk()
-        }
+      }
       
     },
     locateShipCell: function (shipNumber, coordinates) {

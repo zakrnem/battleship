@@ -18,6 +18,9 @@ function boardListener() {
         }
     })
     pcBoard.addEventListener('click', (e) => {
+        //The pc board shouldn't display the ships location
+        //so this f() shouldn't rely on the cell background color
+        //for determining if there's a ship there.
         if (e.target.style.backgroundColor !== 'var(--attack-color)') {
             if (e.target.style.backgroundColor === 'var(--ship-color)') {
                 e.target.textContent = '■'

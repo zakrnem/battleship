@@ -31,8 +31,7 @@ export function homepage() {
         userBoardTitle.className = 'user-board-title'
 
         const userAliveShips = document.createElement('p')
-        userAliveShips.id = 'user-alive-ships'
-        userAliveShips.textContent = 'Please insert the remaining 5 ships'
+        userAliveShips.id = 'user-message'
 
         userSide.append(userBoardTitle, userBoard, userAliveShips)
     
@@ -51,8 +50,7 @@ export function homepage() {
         pcBoardTitle.className = 'pc-board-title'
 
         const pcAliveShips = document.createElement('p')
-        pcAliveShips.id = 'pc-alive-ships'
-        pcAliveShips.textContent = 'Alive ships: 5'
+        pcAliveShips.id = 'pc-message'
 
         pcSide.append(pcBoardTitle, pcBoard, pcAliveShips)
     

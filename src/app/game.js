@@ -1,7 +1,8 @@
 import { gameboard } from "./gameFactory"
+import { gameMessages } from "./reportPlayerTurn"
 import { insertShip } from "./insertShip"
 import { insertBoard } from "./printBoard"
-import { reportStatus } from "./reportStatus"
+import { reportStatus } from "./reportAllShipsSunk"
 
 const board = buildBoard()
 
@@ -14,6 +15,8 @@ export function game(typeOfOperation, attackCoordinates) {
         let areAllShipsSunk = board.computer.receiveAttack(attackCoordinates)
         reportStatus(areAllShipsSunk)
     }
+
+    gameMessages(board)
 }
 
 export function buildBoard() {
