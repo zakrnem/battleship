@@ -4,7 +4,8 @@
     --background-color: #f1f0ea;
     --mouseover: #baba99;
     --ship-color: #000a2d;
-    --attack-color: #4b0000;
+    --missed-shot: #e23c3c;
+    --hit-shot: #4b0000;
 }
 
 @font-face {

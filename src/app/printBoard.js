@@ -22,7 +22,7 @@ export function insertBoard(boardSelector, board) {
             DOMcell.style.backgroundColor = 'var(--ship-color)'
         }
         if (ObjCell === 'X') {
-            DOMcell.style.backgroundColor = 'var(--attack-color)'
+            DOMcell.style.backgroundColor = 'var(--missed-shot)'
         }   
     }
 }

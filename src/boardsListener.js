@@ -18,18 +18,10 @@ function boardListener() {
         }
     })
     pcBoard.addEventListener('click', (e) => {
-        //The pc board shouldn't display the ships location
-        //so this f() shouldn't rely on the cell background color
-        //for determining if there's a ship there.
-        if (e.target.style.backgroundColor !== 'var(--attack-color)') {
-            if (e.target.style.backgroundColor === 'var(--ship-color)') {
-                e.target.textContent = '■'
-            }
-            const idNumber = parseInt(e.target.id.match(/\d+/)[0])
-            const attackCoordinates = getCoordinatesFromId(idNumber)
-            game('attack', attackCoordinates)
-            e.target.style.backgroundColor = 'var(--attack-color)'
-        }
+        const idNumber = parseInt(e.target.id.match(/\d+/)[0])
+        const attackCoordinates = getCoordinatesFromId(idNumber)
+        e.target.style.backgroundColor = 'var(--missed-shot)'
+        game('attack', attackCoordinates)
     })
 }
 

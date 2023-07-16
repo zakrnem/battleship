@@ -1,4 +1,5 @@
 import { checkCoordinates } from './checkCoordinates'
+import { paintAttackedShip } from './idFromCoordinates'
 
 export function ship(length) {
   return {
@@ -50,7 +51,7 @@ export function gameboard() {
         throw new Error('Cell has already been attacked')
       }
       if (!isNaN(parseInt(initialBoardCell))) {
-        
+        paintAttackedShip(attackCoordinates)
       }
       switch (true) {
         case boardCell === '1':
