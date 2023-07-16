@@ -76,7 +76,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   reportStatus: () => (/* binding */ reportStatus)\n/* harmony export */ });\nfunction reportStatus(boolean) {\n  if (boolean === true) {\n    const pcMessage = document.getElementById('pc-alive-ships');\n    pcMessage.textContent = 'All ships have been sunk';\n  }\n}\n\n//# sourceURL=webpack://battleship/./src/app/reportStatus.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   reportStatus: () => (/* binding */ reportStatus)\n/* harmony export */ });\nfunction reportStatus(boolean) {\n  //We could add a remaining ships notification checking for the status\n  //Of each ship after every attack\n  if (boolean === true) {\n    const pcMessage = document.getElementById('pc-alive-ships');\n    pcMessage.textContent = 'All ships have been sunk';\n  }\n}\n\n//# sourceURL=webpack://battleship/./src/app/reportStatus.js?");
 
 /***/ }),
 
