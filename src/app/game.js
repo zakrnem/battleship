@@ -17,7 +17,7 @@ export function game(typeOfOperation, attackCoordinates) {
   if (typeOfOperation === 'attack-oponent') {
     areAllShipsSunk = board.computer.receiveAttack(attackCoordinates)
     paintCell(attackCoordinates, 'pc')
-    reportStatus(areAllShipsSunk)
+    reportStatus(board.computer)
     game('receive-attack')
   }
   if (typeOfOperation === 'receive-attack') {
@@ -25,7 +25,7 @@ export function game(typeOfOperation, attackCoordinates) {
       attackCoordinates = pcAttack()
       areAllShipsSunk = board.user.receiveAttack(attackCoordinates)
       paintCell(attackCoordinates, 'user')
-      reportStatus(areAllShipsSunk)
+      reportStatus(board.user)
     }, 600)
   }
 
