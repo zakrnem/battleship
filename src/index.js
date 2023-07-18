@@ -4,8 +4,8 @@ import './style.css'
 import { homepage } from './homepage'
 homepage()
 
-import { boardsListener } from './boardsListener'
-boardsListener()
+import { boardListener } from './boardListener'
+boardListener()
 
 import { game } from './app/game'
 game('initialize')

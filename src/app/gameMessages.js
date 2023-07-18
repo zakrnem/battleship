@@ -25,5 +25,3 @@ export function gameMessages(status, board) {
   
   messagePara.textContent = message
 }
-
-//

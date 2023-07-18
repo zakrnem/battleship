@@ -26,10 +26,10 @@ export function game(typeOfOperation, attackCoordinates) {
     setTimeout(() => {
       attackCoordinates = pcAttack()
       hitShot = board.user.receiveAttack(attackCoordinates)
-      gameMessages('pc-attack')
       paintCell(attackCoordinates, 'user', hitShot)
+      gameMessages('pc-attack')
       reportAllShipsSunk(board.user)
-    }, 600)
+    }, 500)
   }
 }
 
