@@ -2,30 +2,30 @@ import { gameboard } from './gameFactory'
 import { gameMessages } from './reportPlayerTurn'
 import { insertShip } from './insertShip'
 import { insertBoard } from './printBoard'
-import { reportStatus } from './reportAllShipsSunk'
+import { reportAllShipsSunk } from './reportAllShipsSunk'
 import { paintCell } from './paintCell'
 import { pcAttack } from './pcAttack'
 
 const board = buildBoard()
 
 export function game(typeOfOperation, attackCoordinates) {
-  let areAllShipsSunk
+  let hitShot
   if (typeOfOperation === 'initialize') {
     insertBoard('user', board.user)
     insertBoard('pc', board.computer)
   }
   if (typeOfOperation === 'attack-oponent') {
-    areAllShipsSunk = board.computer.receiveAttack(attackCoordinates)
-    paintCell(attackCoordinates, 'pc')
-    reportStatus(board.computer)
+    hitShot = board.computer.receiveAttack(attackCoordinates)
+    paintCell(attackCoordinates, 'pc', hitShot)
+    reportAllShipsSunk(board.computer)
     game('receive-attack')
   }
   if (typeOfOperation === 'receive-attack') {
     setTimeout(() => {
       attackCoordinates = pcAttack()
-      areAllShipsSunk = board.user.receiveAttack(attackCoordinates)
-      paintCell(attackCoordinates, 'user')
-      reportStatus(board.user)
+      hitShot = board.user.receiveAttack(attackCoordinates)
+      paintCell(attackCoordinates, 'user', hitShot)
+      reportAllShipsSunk(board.user)
     }, 600)
   }
 

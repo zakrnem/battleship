@@ -45,6 +45,7 @@ export function gameboard() {
       let boardCell = this.grid[numberCoordinate][letterCoordinate]
       const initialGrid = this.grid
       const initialBoardCell = initialGrid[numberCoordinate][letterCoordinate]
+      let hitShot = false
 
       if (initialBoardCell === 'X') {
         throw new Error('Cell has already been attacked')
@@ -52,21 +53,26 @@ export function gameboard() {
       switch (true) {
         case boardCell === '1':
           this.ship1.hit()
+          hitShot = true
           break
         case boardCell === '2':
           this.ship2.hit()
-          break
+          return true
         case boardCell === '3':
           this.ship3.hit()
+          hitShot = true
           break
         case boardCell === '4':
           this.ship4.hit()
+          hitShot = true
           break
         case boardCell === '5':
           this.ship5.hit()
+          hitShot = true
           break
       }
       this.grid[numberCoordinate][letterCoordinate] = 'X'
+      return hitShot
     },
     locateShipCell: function (shipNumber, coordinates) {
       const letterCoordinate = coordinates[0]
