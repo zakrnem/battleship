@@ -5,6 +5,7 @@ import { insertBoard } from './printBoard'
 import { reportAllShipsSunk } from './reportAllShipsSunk'
 import { paintCell } from './paintCell'
 import { pcAttack } from './pcAttack'
+import { boardDisabler } from './reportAllShipsSunk'
 
 const board = buildBoard()
 
@@ -20,15 +21,18 @@ export function game(typeOfOperation, attackCoordinates) {
     paintCell(attackCoordinates, 'pc', hitShot)
     gameMessages('user-attack')
     reportAllShipsSunk(board.computer)
+    boardDisabler('write')
     game('receive-attack')
   }
   if (typeOfOperation === 'receive-attack') {
     setTimeout(() => {
       attackCoordinates = pcAttack()
       hitShot = board.user.receiveAttack(attackCoordinates)
+      //Game freezing when pc attacks a previously attacked cell
       paintCell(attackCoordinates, 'user', hitShot)
       gameMessages('pc-attack')
       reportAllShipsSunk(board.user)
+      boardDisabler('write')
     }, 500)
   }
 }
