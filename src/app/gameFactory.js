@@ -1,5 +1,4 @@
 import { checkCoordinates } from './checkCoordinates'
-import { paintAttackedShip } from './idFromCoordinates'
 
 export function ship(length) {
   return {
@@ -50,9 +49,6 @@ export function gameboard() {
       if (initialBoardCell === 'X') {
         throw new Error('Cell has already been attacked')
       }
-      if (!isNaN(parseInt(initialBoardCell))) {
-        paintAttackedShip(attackCoordinates)
-      }
       switch (true) {
         case boardCell === '1':
           this.ship1.hit()
@@ -71,17 +67,18 @@ export function gameboard() {
           break
       }
       this.grid[numberCoordinate][letterCoordinate] = 'X'
-        
-      if (this.ship1 === null ||
+
+      if (
+        this.ship1 === null ||
         this.ship2 === null ||
         this.ship3 === null ||
         this.ship4 === null ||
-        this.ship5 === null) {
-          return false
+        this.ship5 === null
+      ) {
+        return false
       } else {
-          return this.allShipsSunk()
+        return this.allShipsSunk()
       }
-      
     },
     locateShipCell: function (shipNumber, coordinates) {
       const letterCoordinate = coordinates[0]
