@@ -4,7 +4,7 @@ import { insertShip } from './insertShip'
 import { insertBoard } from './printBoard'
 import { reportAllShipsSunk } from './reportAllShipsSunk'
 import { paintCell } from './paintCell'
-import { makePcAttack, pcAttack } from './pcAttack'
+import { makePcAttack } from './pcAttack'
 import { boardDisabler } from './reportAllShipsSunk'
 
 const board = buildBoard()
@@ -25,14 +25,7 @@ export function game(typeOfOperation, attackCoordinates) {
     game('receive-attack')
   }
   if (typeOfOperation === 'receive-attack') {
-    setTimeout(() => {
-      attackCoordinates = pcAttack()
-      hitShot = makePcAttack(attackCoordinates, board)      
-      paintCell(attackCoordinates, 'user', hitShot)
-      gameMessages('pc-attack')
-      reportAllShipsSunk(board.user)
-      boardDisabler('write')
-    }, 500)
+    makePcAttack(board)
   }
 }
 

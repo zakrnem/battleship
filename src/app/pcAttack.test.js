@@ -1,6 +1,6 @@
-import { pcAttack } from './pcAttack'
+import { generateAttackCoordinates } from './pcAttack'
 
 test('Output is an array with two items', () => {
-  expect(typeof pcAttack()).toEqual('object')
-  expect(pcAttack().length).toEqual(2)
+  expect(typeof generateAttackCoordinates()).toEqual('object')
+  expect(generateAttackCoordinates().length).toEqual(2)
 })
