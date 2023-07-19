@@ -5,7 +5,7 @@ describe('Flattens the grid object.', () => {
   const game = buildBoard()
   const flatArr = arrayFromBoard(game.user.grid)
   const expectedArr = [
-    'X',
+    '_',
     '_',
     '3',
     '_',
@@ -62,7 +62,7 @@ describe('Flattens the grid object.', () => {
     '1',
     '1',
     '_',
-    'X',
+    '_',
     '_',
     '_',
     '_',

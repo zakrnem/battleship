@@ -24,7 +24,7 @@ export function generateAttackCoordinates() {
 function logAttack(attackCoordinates, board) {
   let hitShot
   let counter = 0
-  while (counter < 3) {
+  while (counter < 100) {
     counter++
     try {
       hitShot = board.user.receiveAttack(attackCoordinates)
