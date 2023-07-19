@@ -1,7 +1,6 @@
 import { getCoordinatesFromId } from './app/coordinateFromId'
 import { game } from './app/game'
-import { boardDisabler } from './app/reportAllShipsSunk'
-
+import { boardDisabler } from './app/boardDisabler'
 
 export function boardListener() {
   const pcBoard = document.querySelector('.pc-board')

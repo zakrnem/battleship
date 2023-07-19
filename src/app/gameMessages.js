@@ -22,6 +22,6 @@ export function gameMessages(status, board) {
     message = `The computer has made an attack, now it's your turn`
     messagePara.style.color = ''
   }
-  
+
   messagePara.textContent = message
 }
