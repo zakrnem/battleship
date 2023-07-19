@@ -4,3 +4,18 @@ export function pcAttack() {
   const numberCoordinate = Math.floor((Math.random() * 9) + 1)
   return [letterCoordinate, numberCoordinate]
 }
+
+export function makePcAttack (attackCoordinates, board) {
+  let hitShot;
+  let counter = 0
+  while (counter < 3) {
+    counter++
+    try {
+      hitShot = board.user.receiveAttack(attackCoordinates);
+      break
+    } catch (error) {
+      console.log(error);
+    }
+    return hitShot
+  }
+}
