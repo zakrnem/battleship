@@ -2,27 +2,19 @@ import { gameboard } from './gameFactory'
 import { gameMessages } from './gameMessages'
 import { insertShip } from './insertShip'
 import { insertBoard } from './printBoard'
-import { reportAllShipsSunk } from './reportAllShipsSunk'
-import { paintCell } from './paintCell'
+import { makeUserAttack } from './userAttack'
 import { makePcAttack } from './pcAttack'
-import { boardDisabler } from './reportAllShipsSunk'
 
 const board = buildBoard()
 
 export function game(typeOfOperation, attackCoordinates) {
-  let hitShot
   if (typeOfOperation === 'initialize') {
     insertBoard('user', board.user)
     insertBoard('pc', board.computer)
     gameMessages('initialize', board)
   }
   if (typeOfOperation === 'attack-oponent') {
-    hitShot = board.computer.receiveAttack(attackCoordinates)
-    paintCell(attackCoordinates, 'pc', hitShot)
-    gameMessages('user-attack')
-    reportAllShipsSunk(board.computer)
-    boardDisabler('write')
-    game('receive-attack')
+    makeUserAttack(board, attackCoordinates)
   }
   if (typeOfOperation === 'receive-attack') {
     makePcAttack(board)
