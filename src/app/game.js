@@ -8,8 +8,9 @@ import { placeShipListener } from './placeShips'
 
 
 const board = buildBoard()
+let shipNumber = 1
 
-export function game(typeOfOperation, attackCoordinates) {
+export function game(typeOfOperation, attackCoordinates, orientation) {
   if (typeOfOperation === 'initialize') {
     insertBoard('user', board.user)
     placeShipListener()
@@ -20,6 +21,10 @@ export function game(typeOfOperation, attackCoordinates) {
   }
   if (typeOfOperation === 'receive-attack') {
     makePcAttack(board)
+  }
+  if (typeOfOperation === 'insert-ship') {
+    insertShip(board.user, shipNumber++, attackCoordinates, orientation)
+    console.log(board.user)
   }
 }
 

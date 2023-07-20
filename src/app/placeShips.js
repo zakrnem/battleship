@@ -1,3 +1,5 @@
+import { getCoordinatesFromId } from "./coordinateFromId"
+import { game } from "./game"
 import { pcBoardListener } from "./pcBboardListener"
 
 const ships = [5, 4, 3, 3, 2]
@@ -18,8 +20,10 @@ export function placeShipListener() {
         if(e.code === 'Space') {
             orientation *= -1
             if (orientation === -1) {
+                //Vertical
                 cellSum = 10
             } else {
+                //Horizontal
                 cellSum = 1
             }
         }  
@@ -59,6 +63,10 @@ function placeShip(e) {
         const currLength = ships.shift()
         const startID = e.target.id
         let startIdNumber = parseInt(startID.match(/\d+/g))
+
+        const attackCoordinates = getCoordinatesFromId(startIdNumber)
+        const orientationString = (orientation === 1) ? 'horizontal' : 'vertical'
+        game('insert-ship', attackCoordinates, orientationString)
 
         for (let i = 1; i < currLength; i++) {
             startIdNumber += cellSum

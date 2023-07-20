@@ -1,9 +1,3 @@
-When placing ships on the player board.
-Send a message to the user paragraph.
-    "Press space to change orientation".
-
-Disable opponent board when placing ships.
-
 Add a reset button somewhere.
 
 
