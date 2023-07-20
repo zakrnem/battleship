@@ -1,16 +1,30 @@
 let counter = 0
+let orientation = 1
+let cellSum = 1
 
 export function placeShipListener() {
     const userBoard = document.querySelector('.user-board')
     userBoard.addEventListener('click', (e) => placeShip(e))
     userBoard.addEventListener('mouseover', (e) => {
         if (counter === 0) orientationMessage()
+        counter++
         placeShipTemp(e)
     })   
+    document.addEventListener('keydown', (e) => {
+        if(e.code === 'Space') {
+            orientation *= -1
+            if (orientation === -1) {
+                cellSum = 10
+            } else {
+                cellSum = 1
+            }
+        }  
+    })
 }
 
 const ships = [5, 4, 3, 3, 2]
 let tempCells = []
+
 
 function placeShipTemp(e) {
     if (e.target.id !== 'occupied' &&
@@ -18,13 +32,14 @@ function placeShipTemp(e) {
         removeShipTemp(e)
         const currLength = ships[0]
         const startID = e.target.id
-        let startIdNumber = startID.match(/\d+/g)
+        let startIdNumber = parseInt(startID.match(/\d+/g))
 
         tempCells = []
         tempCells.push(startID)
         
         for (let i = 1; i < currLength; i++) {
-            const cellID = 'user' + ++startIdNumber
+            startIdNumber += cellSum
+            const cellID = 'user' + startIdNumber
             tempCells.push(cellID)
             let cell = document.getElementById(cellID)
             if(cell !== null) {
@@ -42,10 +57,11 @@ function placeShip(e) {
     ships.length > 0) {
         const currLength = ships.shift()
         const startID = e.target.id
-        let startIdNumber = startID.match(/\d+/g)
+        let startIdNumber = parseInt(startID.match(/\d+/g))
 
         for (let i = 1; i < currLength; i++) {
-            const cellID = 'user' + ++startIdNumber
+            startIdNumber += cellSum
+            const cellID = 'user' + startIdNumber
             let cell = document.getElementById(cellID)
             cell.id = 'occupied'
             cell.style.backgroundColor = 'var(--ship-color)'
@@ -69,6 +85,6 @@ function removeShipTemp() {
 
 function orientationMessage(remove) {
     const userMessage = document.getElementById('user-message')
-    userMessage.textContent = 'Press space on the keyboard to change ship orientation'
+    userMessage.textContent = 'Press "Space" to change ship orientation'
     if (remove === 'remove') userMessage.textContent = ''
 }
