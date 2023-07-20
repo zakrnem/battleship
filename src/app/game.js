@@ -4,12 +4,15 @@ import { insertShip } from './insertShip'
 import { insertBoard } from './printBoard'
 import { makeUserAttack } from './userAttack'
 import { makePcAttack } from './pcAttack'
+import { boardListener } from './boardListener'
+
 
 const board = buildBoard()
 
 export function game(typeOfOperation, attackCoordinates) {
   if (typeOfOperation === 'initialize') {
     insertBoard('user', board.user)
+    boardListener()
     gameMessages('initialize', board)
   }
   if (typeOfOperation === 'attack-oponent') {

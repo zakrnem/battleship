@@ -1,14 +1,20 @@
+let counter = 0
+
 export function placeShipListener() {
     const userBoard = document.querySelector('.user-board')
     userBoard.addEventListener('click', (e) => placeShip(e))
-    userBoard.addEventListener('mouseover', (e) => placeShipTemp(e))   
+    userBoard.addEventListener('mouseover', (e) => {
+        if (counter === 0) orientationMessage()
+        placeShipTemp(e)
+    })   
 }
 
 const ships = [5, 4, 3, 3, 2]
 let tempCells = []
 
 function placeShipTemp(e) {
-    if (e.target.id !== 'occupied') {
+    if (e.target.id !== 'occupied' &&
+    ships.length > 0) {
         removeShipTemp(e)
         const currLength = ships[0]
         const startID = e.target.id
@@ -26,6 +32,8 @@ function placeShipTemp(e) {
             }
         }
         e.target.style.backgroundColor = 'var(--mouseover)'
+    } else {
+        orientationMessage('remove')
     }
 }
 
@@ -57,4 +65,10 @@ function removeShipTemp() {
             cell.style.backgroundColor = ''
         }
     }
+}
+
+function orientationMessage(remove) {
+    const userMessage = document.getElementById('user-message')
+    userMessage.textContent = 'Press space on the keyboard to change ship orientation'
+    if (remove === 'remove') userMessage.textContent = ''
 }
