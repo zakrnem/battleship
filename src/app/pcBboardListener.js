@@ -1,14 +1,12 @@
 import { getCoordinatesFromId } from './coordinateFromId'
 import { game } from './game'
 import { boardDisabler } from './boardDisabler'
-import { placeShipListener } from './placeShips'
 
 
-export function boardListener() {
+export function pcBoardListener() {
   const pcBoard = document.querySelector('.pc-board')
   pcBoard.addEventListener('mouseover', (e) => mouseoverHandler(e))
   pcBoard.addEventListener('click', (e) => attackHandler(e))
-  placeShipListener()
 }
 
 function attackHandler(e) {

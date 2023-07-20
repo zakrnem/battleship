@@ -1,3 +1,7 @@
+import { pcBoardListener } from "./pcBboardListener"
+
+const ships = [5, 4, 3, 3, 2]
+let tempCells = []
 let counter = 0
 let orientation = 1
 let cellSum = 1
@@ -22,10 +26,6 @@ export function placeShipListener() {
     })
 }
 
-const ships = [5, 4, 3, 3, 2]
-let tempCells = []
-
-
 function placeShipTemp(e) {
     if (e.target.id !== 'occupied' &&
     ships.length > 0) {
@@ -49,6 +49,7 @@ function placeShipTemp(e) {
         e.target.style.backgroundColor = 'var(--mouseover)'
     } else {
         orientationMessage('remove')
+        pcBoardListener()
     }
 }
 
