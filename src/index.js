@@ -9,3 +9,6 @@ boardListener()
 
 import { game } from './app/game'
 game('initialize')
+
+import { placeShipListener } from './app/placeShips'
+placeShipListener()

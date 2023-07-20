@@ -10,7 +10,6 @@ const board = buildBoard()
 export function game(typeOfOperation, attackCoordinates) {
   if (typeOfOperation === 'initialize') {
     insertBoard('user', board.user)
-    //insertBoard('pc', board.computer)
     gameMessages('initialize', board)
   }
   if (typeOfOperation === 'attack-oponent') {
@@ -27,11 +26,11 @@ export function buildBoard() {
     computer: gameboard(),
   }
   //Build initial user board
-  insertShip(game.user, 1, ['B', 6], 'horizontal')
+  /* insertShip(game.user, 1, ['B', 6], 'horizontal')
   insertShip(game.user, 2, ['F', 9], 'horizontal')
   insertShip(game.user, 3, ['C', 1], 'vertical')
   insertShip(game.user, 4, ['D', 8], 'vertical')
-  insertShip(game.user, 5, ['I', 4], 'vertical')
+  insertShip(game.user, 5, ['I', 4], 'vertical') */
 
   //Build initial computer board
   insertShip(game.computer, 1, ['B', 6], 'horizontal')
