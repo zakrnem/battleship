@@ -1,27 +1,28 @@
-export function gameMessages(status, board) {
+export function gameMessages(status) {
   const messagePara = document.getElementById('message')
   let message
-  if (status === 'initialize') {
-    if (
-      board.user.ship1 === null &&
-      board.user.ship2 === null &&
-      board.user.ship3 === null &&
-      board.user.ship4 === null &&
-      board.user.ship5 === null
-    ) {
-      message = `Please insert the ships on the left board`
-    } else {
-      message = `It's your turn to attack the opponent's board.`
-    }
+  console.log(status)
+  switch (true) {
+    case (status === 'initialize'):
+      message = `Welcome to the game.`
+      break
+    case (status === 'place-ships'):
+      message = `Please insert the ships on the left board.`
+      break
+    case (status === 'first-attack'):
+      message = 'Now you can attack the opponent on the right board.'
+      break
+    case (status === 'user-attack'):
+      message = '_'
+      messagePara.style.color = 'var(--background-color)'
+      break
+    case (status === 'pc-attack'):
+      message = `The computer has made an attack, now it's your turn.`
+      messagePara.style.color = ''
+      break
   }
-  if (status === 'user-attack') {
-    message = '_'
-    messagePara.style.color = 'var(--background-color)'
+  if (status !== undefined) {
+    messagePara.textContent = message
   }
-  if (status === 'pc-attack') {
-    message = `The computer has made an attack, now it's your turn`
-    messagePara.style.color = ''
-  }
-
-  messagePara.textContent = message
+  
 }

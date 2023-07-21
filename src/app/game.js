@@ -24,7 +24,6 @@ export function game(typeOfOperation, attackCoordinates, orientation) {
   }
   if (typeOfOperation === 'insert-ship') {
     insertShip(board.user, shipNumber++, attackCoordinates, orientation)
-    console.log(board.user)
   }
 }
 

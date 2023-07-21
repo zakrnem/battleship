@@ -1,5 +1,6 @@
 import { getCoordinatesFromId } from "./coordinateFromId"
 import { game } from "./game"
+import { gameMessages } from "./gameMessages"
 import { pcBoardListener } from "./pcBboardListener"
 
 const ships = [5, 4, 3, 3, 2]
@@ -7,6 +8,7 @@ let tempCells = []
 let counter = 0
 let orientation = 1
 let cellSum = 1
+let firstAttack = 0
 
 export function placeShipListener() {
     const userBoard = document.querySelector('.user-board')
@@ -19,14 +21,21 @@ export function placeShipListener() {
     document.addEventListener('keydown', (e) => {
         if(e.code === 'Space') {
             orientation *= -1
-            if (orientation === -1) {
-                //Vertical
+            if (orientation === -1) {//Vertical
                 cellSum = 10
-            } else {
-                //Horizontal
+            } else {//Horizontal
                 cellSum = 1
             }
         }  
+    })
+    document.addEventListener('mouseover', () => {
+        if (ships.length > 0) {
+            gameMessages('place-ships')
+        }
+        if (ships.length === 0 && firstAttack === 0) {
+            gameMessages('first-attack')
+            firstAttack++
+        }
     })
 }
 
@@ -53,6 +62,7 @@ function placeShipTemp(e) {
         e.target.style.backgroundColor = 'var(--mouseover)'
     } else {
         orientationMessage('remove')
+        gameMessages()
         pcBoardListener()
     }
 }
