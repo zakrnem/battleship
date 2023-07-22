@@ -82,9 +82,21 @@ export function gameboard() {
       if (boardCell === '_') {
         this.grid[numberCoordinate][letterCoordinate] = shipNumber.toString()
       } else if (typeof boardCell === 'object') {
-        throw new Error(`There's another ship in this location`)
+        console.log('it does execute')
+        //throw new Error(`There's another ship in this location`)
       }
       return this.grid
+    },
+    isCellOccupied: function (coordinates) {
+      const letterCoordinate = coordinates[0]
+      const numberCoordinate = coordinates[1]
+      let boardCell = this.grid[numberCoordinate][letterCoordinate]
+      
+      if (typeof boardCell === 'object') {
+        return true
+      } else {
+        return false
+      }
     },
     allShipsSunk: function () {
       return this.ship1.isSunk() &&

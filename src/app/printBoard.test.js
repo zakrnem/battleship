@@ -1,8 +1,14 @@
 import { buildBoard } from './game'
 import { arrayFromBoard } from './printBoard'
+import { insertShip } from './insertShip'
 
 describe('Flattens the grid object.', () => {
   const game = buildBoard()
+  insertShip(game.user, 1, ['B', 6], 'horizontal')
+  insertShip(game.user, 2, ['F', 9], 'horizontal')
+  insertShip(game.user, 3, ['C', 1], 'vertical')
+  insertShip(game.user, 4, ['D', 8], 'vertical')
+  insertShip(game.user, 5, ['I', 4], 'vertical')
   const flatArr = arrayFromBoard(game.user.grid)
   const expectedArr = [
     '_',

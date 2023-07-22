@@ -1,7 +1,13 @@
 import { buildBoard } from './game'
+import { insertShip } from './insertShip'
 
 describe('Creates the game object with the two boards.', () => {
   const game = buildBoard()
+  insertShip(game.user, 1, ['B', 6], 'horizontal')
+  insertShip(game.user, 2, ['F', 9], 'horizontal')
+  insertShip(game.user, 3, ['C', 1], 'vertical')
+  insertShip(game.user, 4, ['D', 8], 'vertical')
+  insertShip(game.user, 5, ['I', 4], 'vertical')
   const grid1 = {
     1: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     2: { A: '_', B: '_', C: '3', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },

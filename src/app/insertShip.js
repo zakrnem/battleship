@@ -31,7 +31,12 @@ export function insertShip(gameObj, shipNumber, startCoordinate, orientation) {
 function insertCompleteShip(length, shipNumber, startCoordinate, orientation, gameObj) {
   const positionsArray = getPositionsArray(length[shipNumber], startCoordinate, orientation)
   positionsArray.forEach((coordinates) => {
-    gameObj.locateShipCell(shipNumber, coordinates)
+    let isCellOccupied = gameObj.isCellOccupied(coordinates)
+    if (!isCellOccupied) {
+      gameObj.locateShipCell(shipNumber, coordinates)
+    } else {
+      throw new Error(`There's another ship in this location`)
+    }
   })
 }
 
@@ -50,9 +55,6 @@ export function getPositionsArray(length, startCoordinate, orientation) {
         else {
           letterCoordinate = String.fromCharCode(letterCoordinate[0].charCodeAt(0) + 1)
           coordinates = checkCoordinates(letterCoordinate, numberCoordinate)
-          //Before pushing a set of coordinates onto the positionsArray
-          //we could check in the game[] if that cell is occupied,
-          //for that we would need a new method that checks
           positionsArray.push(coordinates)
         }
       }

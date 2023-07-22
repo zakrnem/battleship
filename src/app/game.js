@@ -1,6 +1,6 @@
 import { gameboard } from './gameFactory'
 import { gameMessages } from './gameMessages'
-import { getPositionsArray, insertShip } from './insertShip'
+import { insertShip } from './insertShip'
 import { insertBoard } from './printBoard'
 import { makeUserAttack } from './userAttack'
 import { makePcAttack } from './pcAttack'
