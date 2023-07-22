@@ -3,7 +3,7 @@ import { checkCoordinates } from './checkCoordinates'
 
 export function insertShip(gameObj, shipNumber, startCoordinate, orientation) {
   const length = ['', 5, 4, 3, 3, 2]
-
+  
   switch (true) {
     case shipNumber === 1:
       gameObj.ship1 = new ship(length[shipNumber])
@@ -50,6 +50,9 @@ export function getPositionsArray(length, startCoordinate, orientation) {
         else {
           letterCoordinate = String.fromCharCode(letterCoordinate[0].charCodeAt(0) + 1)
           coordinates = checkCoordinates(letterCoordinate, numberCoordinate)
+          //Before pushing a set of coordinates onto the positionsArray
+          //we could check in the game[] if that cell is occupied,
+          //for that we would need a new method that checks
           positionsArray.push(coordinates)
         }
       }

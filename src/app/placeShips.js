@@ -12,11 +12,20 @@ let firstAttack = 0
 
 export function placeShipListener() {
     const userBoard = document.querySelector('.user-board')
-    userBoard.addEventListener('click', (e) => placeShip(e))
+    userBoard.addEventListener('click', (e) => {
+        if (e.target.className !== 'user-board' &&
+        e.target.id !== 'occupied' &&
+        ships.length > 0) {
+            placeShip(e)
+        }
+    })  
     userBoard.addEventListener('mouseover', (e) => {
         if (counter === 0) orientationMessage()
         counter++
-        placeShipTemp(e)
+        if (e.target.id !== 'occupied' &&
+        ships.length > 0) {
+            placeShipTemp(e)
+        }
     })   
     document.addEventListener('keydown', (e) => {
         if(e.code === 'Space') {
@@ -44,54 +53,47 @@ export function placeShipListener() {
 }
 
 function placeShipTemp(e) {
-    if (e.target.id !== 'occupied' &&
-    ships.length > 0) {
-        removeShipTemp(e)
-        const currLength = ships[0]
-        const startID = e.target.id
-        let startIdNumber = parseInt(startID.match(/\d+/g))
+    removeShipTemp(e)
+    const currLength = ships[0]
+    const startID = e.target.id
+    let startIdNumber = parseInt(startID.match(/\d+/g))
 
-        tempCells = []
-        tempCells.push(startID)
-        
-        for (let i = 1; i < currLength; i++) {
-            startIdNumber += cellSum
-            const cellID = 'user' + startIdNumber
-            tempCells.push(cellID)
-            let cell = document.getElementById(cellID)
-            if(cell !== null) {
-                cell.style.backgroundColor = 'var(--mouseover)'
-            }
+    tempCells = []
+    tempCells.push(startID)
+    
+    for (let i = 1; i < currLength; i++) {
+        startIdNumber += cellSum
+        const cellID = 'user' + startIdNumber
+        tempCells.push(cellID)
+        let cell = document.getElementById(cellID)
+        if(cell !== null) {
+            cell.style.backgroundColor = 'var(--mouseover)'
         }
-        e.target.style.backgroundColor = 'var(--mouseover)'
     }
+    e.target.style.backgroundColor = 'var(--mouseover)'
 }
 
 function placeShip(e) {
-    if (e.target.id !== 'occupied' &&
-    ships.length > 0) {
-        const currLength = ships.shift()
-        const startID = e.target.id
-        let startIdNumber = parseInt(startID.match(/\d+/g))
+    const currLength = ships.shift()
+    const startID = e.target.id
+    let startIdNumber = parseInt(startID.match(/\d+/g))
+    const attackCoordinates = getCoordinatesFromId(startIdNumber)
+    const orientationString = (orientation === 1) ? 'horizontal' : 'vertical'
 
-        const attackCoordinates = getCoordinatesFromId(startIdNumber)
-        const orientationString = (orientation === 1) ? 'horizontal' : 'vertical'
-
-        let legalityOfPlacement = game('insert-ship', attackCoordinates, orientationString)
-        if (legalityOfPlacement) {
-            for (let i = 1; i < currLength; i++) {
-                startIdNumber += cellSum
-                const cellID = 'user' + startIdNumber
-                let cell = document.getElementById(cellID)
-                cell.id = 'occupied'
-                cell.style.backgroundColor = 'var(--ship-color)'
-            }
-            let startCell = document.getElementById(startID)
-            startCell.id = 'occupied'
-            e.target.style.backgroundColor = 'var(--ship-color)'
-        } else {
-            ships.unshift(currLength)
+    let legalityOfPlacement = game('insert-ship', attackCoordinates, orientationString)
+    if (legalityOfPlacement) {
+        for (let i = 1; i < currLength; i++) {
+            startIdNumber += cellSum
+            const cellID = 'user' + startIdNumber
+            let cell = document.getElementById(cellID)
+            cell.id = 'occupied'
+            cell.style.backgroundColor = 'var(--ship-color)'
         }
+        let startCell = document.getElementById(startID)
+        startCell.id = 'occupied'
+        e.target.style.backgroundColor = 'var(--ship-color)'
+    } else {
+        ships.unshift(currLength)
     }
 }
 
