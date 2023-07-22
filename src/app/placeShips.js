@@ -21,10 +21,10 @@ export function placeShipListener() {
     document.addEventListener('keydown', (e) => {
         if(e.code === 'Space') {
             orientation *= -1
-            if (orientation === -1) {//Vertical
-                cellSum = 10
-            } else {//Horizontal
-                cellSum = 1
+            if (orientation === -1) {
+                cellSum = 10 //Vertical
+            } else {
+                cellSum = 1 //Horizontal
             }
         }  
     })
@@ -35,6 +35,10 @@ export function placeShipListener() {
         if (ships.length === 0 && firstAttack === 0) {
             gameMessages('first-attack')
             firstAttack++
+        }
+        if (ships.length === 0) {
+            orientationMessage('remove')
+            pcBoardListener()
         }
     })
 }
@@ -60,10 +64,6 @@ function placeShipTemp(e) {
             }
         }
         e.target.style.backgroundColor = 'var(--mouseover)'
-    } else {
-        orientationMessage('remove')
-        gameMessages()
-        pcBoardListener()
     }
 }
 
@@ -76,18 +76,22 @@ function placeShip(e) {
 
         const attackCoordinates = getCoordinatesFromId(startIdNumber)
         const orientationString = (orientation === 1) ? 'horizontal' : 'vertical'
-        game('insert-ship', attackCoordinates, orientationString)
 
-        for (let i = 1; i < currLength; i++) {
-            startIdNumber += cellSum
-            const cellID = 'user' + startIdNumber
-            let cell = document.getElementById(cellID)
-            cell.id = 'occupied'
-            cell.style.backgroundColor = 'var(--ship-color)'
+        let legalityOfPlacement = game('insert-ship', attackCoordinates, orientationString)
+        if (legalityOfPlacement) {
+            for (let i = 1; i < currLength; i++) {
+                startIdNumber += cellSum
+                const cellID = 'user' + startIdNumber
+                let cell = document.getElementById(cellID)
+                cell.id = 'occupied'
+                cell.style.backgroundColor = 'var(--ship-color)'
+            }
+            let startCell = document.getElementById(startID)
+            startCell.id = 'occupied'
+            e.target.style.backgroundColor = 'var(--ship-color)'
+        } else {
+            ships.unshift(currLength)
         }
-        let startCell = document.getElementById(startID)
-        startCell.id = 'occupied'
-        e.target.style.backgroundColor = 'var(--ship-color)'
     }
 }
 

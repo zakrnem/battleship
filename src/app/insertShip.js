@@ -35,7 +35,7 @@ function insertCompleteShip(length, shipNumber, startCoordinate, orientation, ga
   })
 }
 
-function getPositionsArray(length, startCoordinate, orientation) {
+export function getPositionsArray(length, startCoordinate, orientation) {
   const positionsArray = []
   let coordinates = checkCoordinates(startCoordinate[0], startCoordinate[1])
   if (coordinates === null) {

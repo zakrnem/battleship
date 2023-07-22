@@ -1,11 +1,10 @@
 import { gameboard } from './gameFactory'
 import { gameMessages } from './gameMessages'
-import { insertShip } from './insertShip'
+import { getPositionsArray, insertShip } from './insertShip'
 import { insertBoard } from './printBoard'
 import { makeUserAttack } from './userAttack'
 import { makePcAttack } from './pcAttack'
 import { placeShipListener } from './placeShips'
-
 
 const board = buildBoard()
 let shipNumber = 1
@@ -23,7 +22,15 @@ export function game(typeOfOperation, attackCoordinates, orientation) {
     makePcAttack(board)
   }
   if (typeOfOperation === 'insert-ship') {
-    insertShip(board.user, shipNumber++, attackCoordinates, orientation)
+    try {
+      insertShip(board.user, shipNumber++, attackCoordinates, orientation)
+      return true
+    } catch (error) {
+      console.log(error)
+      shipNumber--
+      return false
+    }
+    
   }
 }
 

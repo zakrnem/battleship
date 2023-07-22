@@ -1,7 +1,7 @@
 export function gameMessages(status) {
   const messagePara = document.getElementById('message')
   let message
-  console.log(status)
+
   switch (true) {
     case (status === 'initialize'):
       message = `Welcome to the game.`
@@ -21,8 +21,8 @@ export function gameMessages(status) {
       messagePara.style.color = ''
       break
   }
+
   if (status !== undefined) {
     messagePara.textContent = message
   }
-  
 }
