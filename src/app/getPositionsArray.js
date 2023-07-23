@@ -1,8 +1,8 @@
 import { checkCoordinates } from './checkCoordinates'
 
-export function getPositionsArray(length, startCoordinate, orientation) {
+export function getPositionsArray(length, startCoordinates, orientation) {
     const positionsArray = []
-    let coordinates = checkCoordinates(startCoordinate[0], startCoordinate[1])
+    let coordinates = checkCoordinates(startCoordinates[0], startCoordinates[1])
     if (coordinates === null) {
       throw new Error('Start position is outside of board')
     } else {

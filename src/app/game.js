@@ -3,6 +3,8 @@ import { insertShip } from './insertShip'
 import { insertBoard } from './printBoard'
 import { makeUserAttack } from './userAttack'
 import { makePcAttack } from './pcAttack'
+import { placeShipListener } from './placeShips'
+import { gameMessages } from './gameMessages'
 
 const board = buildBoard()
 let shipNumber = 1
@@ -10,8 +12,8 @@ let shipNumber = 1
 export function game(typeOfOperation, coordinates, orientation) {
   if (typeOfOperation === 'initialize') {
     insertBoard('user', board.user)
-    //placeShipListener()
-    //gameMessages('initialize', board)
+    placeShipListener()
+    gameMessages('initialize', board)
   }
   if (typeOfOperation === 'attack-oponent') {
     makeUserAttack(board, coordinates)

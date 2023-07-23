@@ -1,7 +1,6 @@
 import { getCoordinatesFromId } from "./coordinateFromId"
 import { game } from "./game"
 import { gameMessages } from "./gameMessages"
-import { isPlacementLegal } from "./isPlacementLegal"
 import { pcBoardListener } from "./pcBboardListener"
 
 const ships = [5, 4, 3, 3, 2]
@@ -81,7 +80,6 @@ function placeShip(e) {
     const startCoordinates = getCoordinatesFromId(startIdNumber)
     const orientationString = (orientation === 1) ? 'horizontal' : 'vertical'
 
-    isPlacementLegal(startCoordinates, currLength, orientationString)
     let legalityOfPlacement = game('insert-ship', startCoordinates, orientationString)
     if (legalityOfPlacement) {
         for (let i = 1; i < currLength; i++) {
