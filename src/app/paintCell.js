@@ -10,3 +10,21 @@ export function paintCell(coordinates, playerString, hitShot) {
     cell.style.backgroundColor = 'var(--missed-shot)'
   }
 }
+
+export function paintUserCell(typeOfOperation, cell) {
+  let cellColor
+    if (typeOfOperation === 'place-ship') {
+        cellColor = 'var(--ship-color)'
+    }
+    if (cell.getAttribute('status') !== 'occupied') {
+        switch (true) {
+            case (typeOfOperation === 'remove-ship'):
+                cellColor = ''
+                break
+            case (typeOfOperation === 'temp-ship'):
+                cellColor = 'var(--mouseover)'
+                break
+        }
+    }
+    cell.style.backgroundColor = cellColor
+}
