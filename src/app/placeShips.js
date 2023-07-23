@@ -22,8 +22,7 @@ export function placeShipListener() {
     userBoard.addEventListener('mouseover', (e) => {
         if (counter === 0) orientationMessage()
         counter++
-        if (e.target.id !== 'occupied' &&
-        ships.length > 0) {
+        if (ships.length > 0) {
             placeShipTemp(e)
         }
     })   
@@ -53,7 +52,7 @@ export function placeShipListener() {
 }
 
 function placeShipTemp(e) {
-    removeShipTemp(e)
+    removeShipTemp()
     const currLength = ships[0]
     const startID = e.target.id
     let startIdNumber = parseInt(startID.match(/\d+/g))
@@ -66,11 +65,13 @@ function placeShipTemp(e) {
         const cellID = 'user' + startIdNumber
         tempCells.push(cellID)
         let cell = document.getElementById(cellID)
-        if(cell !== null) {
+        if (cell !== null && cell.getAttribute('status') !== 'occupied') {
             cell.style.backgroundColor = 'var(--mouseover)'
         }
     }
-    e.target.style.backgroundColor = 'var(--mouseover)'
+    if (e.target.getAttribute('status') !== 'occupied') {
+        e.target.style.backgroundColor = 'var(--mouseover)'
+    }
 }
 
 function placeShip(e) {
@@ -85,17 +86,12 @@ function placeShip(e) {
         for (let i = 1; i < currLength; i++) {
             startIdNumber += cellSum
             const cellID = 'user' + startIdNumber
-            //The error is happening here
-            //We need to separate the painting of the cells into another module
-            //And we need to build the coordinates array for a starting point
-            //and checking each element of that array to validate that there
-            //isn't another ship in that location against the info of the game[].
             let cell = document.getElementById(cellID)
-            cell.id = 'occupied'
+            cell.setAttribute('status', 'occupied')
             cell.style.backgroundColor = 'var(--ship-color)'
         }
         let startCell = document.getElementById(startID)
-        startCell.id = 'occupied'
+        startCell.setAttribute('status', 'occupied')
         e.target.style.backgroundColor = 'var(--ship-color)'
     } else {
         ships.unshift(currLength)
@@ -107,7 +103,8 @@ function removeShipTemp() {
     for (let i = 0; i < length; i++) {
         const cellID = tempCells.shift()
         let cell = document.getElementById(cellID)
-        if(cell !== null) {
+        if (cell !== null &&
+            cell.getAttribute('status') !== 'occupied') {
             cell.style.backgroundColor = ''
         }
     }

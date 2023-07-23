@@ -1,9 +1,5 @@
 Add a reset button somewhere.
 
-Enable player manual ship placement.
-    Fix bugs.
-    Don't allow the insertion of ships outside the board.
-
     
 Enable random ship placement.
 Improve pc attacks inteligence.
