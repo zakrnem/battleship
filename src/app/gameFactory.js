@@ -81,9 +81,6 @@ export function gameboard() {
 
       if (boardCell === '_') {
         this.grid[numberCoordinate][letterCoordinate] = shipNumber.toString()
-      } else if (typeof boardCell === 'object') {
-        console.log('it does execute')
-        //throw new Error(`There's another ship in this location`)
       }
       return this.grid
     },

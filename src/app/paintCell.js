@@ -13,8 +13,9 @@ export function paintCell(coordinates, playerString, hitShot) {
 
 export function paintUserCell(typeOfOperation, cell) {
   let cellColor
+  if (cell !== null) {
     if (typeOfOperation === 'place-ship') {
-        cellColor = 'var(--ship-color)'
+      cellColor = 'var(--ship-color)'
     }
     if (cell.getAttribute('status') !== 'occupied') {
         switch (true) {
@@ -27,4 +28,5 @@ export function paintUserCell(typeOfOperation, cell) {
         }
     }
     cell.style.backgroundColor = cellColor
+  }  
 }
