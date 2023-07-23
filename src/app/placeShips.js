@@ -1,6 +1,7 @@
 import { getCoordinatesFromId } from "./coordinateFromId"
 import { game } from "./game"
 import { gameMessages } from "./gameMessages"
+import { isPlacementLegal } from "./isPlacementLegal"
 import { pcBoardListener } from "./pcBboardListener"
 
 const ships = [5, 4, 3, 3, 2]
@@ -77,14 +78,20 @@ function placeShip(e) {
     const currLength = ships.shift()
     const startID = e.target.id
     let startIdNumber = parseInt(startID.match(/\d+/g))
-    const attackCoordinates = getCoordinatesFromId(startIdNumber)
+    const startCoordinates = getCoordinatesFromId(startIdNumber)
     const orientationString = (orientation === 1) ? 'horizontal' : 'vertical'
 
-    let legalityOfPlacement = game('insert-ship', attackCoordinates, orientationString)
+    isPlacementLegal(startCoordinates, currLength, orientationString)
+    let legalityOfPlacement = game('insert-ship', startCoordinates, orientationString)
     if (legalityOfPlacement) {
         for (let i = 1; i < currLength; i++) {
             startIdNumber += cellSum
             const cellID = 'user' + startIdNumber
+            //The error is happening here
+            //We need to separate the painting of the cells into another module
+            //And we need to build the coordinates array for a starting point
+            //and checking each element of that array to validate that there
+            //isn't another ship in that location against the info of the game[].
             let cell = document.getElementById(cellID)
             cell.id = 'occupied'
             cell.style.backgroundColor = 'var(--ship-color)'

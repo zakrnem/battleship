@@ -498,3 +498,16 @@ describe('Ships receive attacks & and sink.', () => {
     expect(game.allShipsSunk()).toEqual(true)
   })
 })
+
+describe('isCellOccupied method works.', () => {
+  test('Function returns false when ship placement causes an overlap of ships.', () => {
+    const game = {
+      user: gameboard(),
+      computer: gameboard(),
+    }
+    insertShip(game.user, 1, ['B', 4], 'horizontal')
+    expect(game.user.isCellOccupied(['C', 4])).toEqual(true)
+    expect(game.user.isCellOccupied(['E', 4])).toEqual(true)
+    expect(game.user.isCellOccupied(['B', 5])).toEqual(false)
+})
+})

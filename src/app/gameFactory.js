@@ -91,11 +91,12 @@ export function gameboard() {
       const letterCoordinate = coordinates[0]
       const numberCoordinate = coordinates[1]
       let boardCell = this.grid[numberCoordinate][letterCoordinate]
-      
-      if (typeof boardCell === 'object') {
-        return true
-      } else {
+      boardCell = parseInt(boardCell)
+
+      if (isNaN(boardCell)) {
         return false
+      } else {
+        return true
       }
     },
     allShipsSunk: function () {

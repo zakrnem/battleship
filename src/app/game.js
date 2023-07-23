@@ -1,36 +1,36 @@
 import { gameboard } from './gameFactory'
-import { gameMessages } from './gameMessages'
 import { insertShip } from './insertShip'
 import { insertBoard } from './printBoard'
 import { makeUserAttack } from './userAttack'
 import { makePcAttack } from './pcAttack'
-import { placeShipListener } from './placeShips'
 
 const board = buildBoard()
 let shipNumber = 1
 
-export function game(typeOfOperation, attackCoordinates, orientation) {
+export function game(typeOfOperation, coordinates, orientation) {
   if (typeOfOperation === 'initialize') {
     insertBoard('user', board.user)
-    placeShipListener()
-    gameMessages('initialize', board)
+    //placeShipListener()
+    //gameMessages('initialize', board)
   }
   if (typeOfOperation === 'attack-oponent') {
-    makeUserAttack(board, attackCoordinates)
+    makeUserAttack(board, coordinates)
   }
   if (typeOfOperation === 'receive-attack') {
     makePcAttack(board)
   }
   if (typeOfOperation === 'insert-ship') {
     try {
-      insertShip(board.user, shipNumber++, attackCoordinates, orientation)
+      insertShip(board.user, shipNumber++, coordinates, orientation)
       return true
     } catch (error) {
       console.log(error)
       shipNumber--
       return false
     }
-    
+  }
+  if (typeOfOperation === 'return-board') {
+    return board
   }
 }
 
@@ -39,12 +39,6 @@ export function buildBoard() {
     user: gameboard(),
     computer: gameboard(),
   }
-  //Build initial user board
-  /* insertShip(game.user, 1, ['B', 6], 'horizontal')
-  insertShip(game.user, 2, ['F', 9], 'horizontal')
-  insertShip(game.user, 3, ['C', 1], 'vertical')
-  insertShip(game.user, 4, ['D', 8], 'vertical')
-  insertShip(game.user, 5, ['I', 4], 'vertical') */
 
   //Build initial computer board
   insertShip(game.computer, 1, ['B', 6], 'horizontal')
