@@ -65,13 +65,9 @@ function placeShipTemp(e) {
         const cellID = 'user' + startIdNumber
         tempCells.push(cellID)
         let cell = document.getElementById(cellID)
-        if (cell !== null && cell.getAttribute('status') !== 'occupied') {
-            cell.style.backgroundColor = 'var(--mouseover)'
-        }
+        paintCell('temp-ship', cell)
     }
-    if (e.target.getAttribute('status') !== 'occupied') {
-        e.target.style.backgroundColor = 'var(--mouseover)'
-    }
+   paintCell('temp-ship', e.target)
 }
 
 function placeShip(e) {
@@ -88,11 +84,11 @@ function placeShip(e) {
             const cellID = 'user' + startIdNumber
             let cell = document.getElementById(cellID)
             cell.setAttribute('status', 'occupied')
-            cell.style.backgroundColor = 'var(--ship-color)'
+            paintCell('place-ship', cell)
         }
         let startCell = document.getElementById(startID)
         startCell.setAttribute('status', 'occupied')
-        e.target.style.backgroundColor = 'var(--ship-color)'
+        paintCell('place-ship', e.target)
     } else {
         ships.unshift(currLength)
     }
@@ -103,10 +99,7 @@ function removeShipTemp() {
     for (let i = 0; i < length; i++) {
         const cellID = tempCells.shift()
         let cell = document.getElementById(cellID)
-        if (cell !== null &&
-            cell.getAttribute('status') !== 'occupied') {
-            cell.style.backgroundColor = ''
-        }
+        paintCell('remove-ship', cell)
     }
 }
 
@@ -114,4 +107,22 @@ function orientationMessage(remove) {
     const userMessage = document.getElementById('user-message')
     userMessage.textContent = 'Press "Space" to change ship orientation'
     if (remove === 'remove') userMessage.textContent = ''
+}
+
+function paintCell(typeOfOperation, cell) {
+    let cellColor
+    if (typeOfOperation === 'place-ship') {
+        cellColor = 'var(--ship-color)'
+    }
+    if (cell.getAttribute('status') !== 'occupied') {
+        switch (true) {
+            case (typeOfOperation === 'remove-ship'):
+                cellColor = ''
+                break
+            case (typeOfOperation === 'temp-ship'):
+                cellColor = 'var(--mouseover)'
+                break
+        }
+    }
+    cell.style.backgroundColor = cellColor
 }
