@@ -1,3 +1,7 @@
+PC and user boards don't have the same number of attacks.
+    When trying to report the number of attacks the code is failing
+        because we are trying to count 'X' on the board, but attacked ships
+        don't represent 'X' on the board, the ship number stays unchanged.
 When the user presses a previously attacked cell the app throws an error that is not caught.
     
 Enable random ship placement.
