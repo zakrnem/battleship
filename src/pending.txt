@@ -1,13 +1,4 @@
-Add a reset button somewhere.
-
+When the user presses a previously attacked cell the app throws an error that is not caught.
     
 Enable random ship placement.
 Improve pc attacks inteligence.
-
-
-1. Play against computer:
-    Create board for player.
-    Create board for PC.
-        Assign ship positions randomly.
-        PC will make random moves.
-    Create main game loop and module for DOM interaction.

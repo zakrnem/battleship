@@ -7,12 +7,11 @@ export function makePcAttack(board) {
   setTimeout(() => {
     const attackCoordinates = generateAttackCoordinates()
     const hitShot = logAttack(attackCoordinates, board)
-    console.log(hitShot)
     paintCell(attackCoordinates, 'user', hitShot)
     gameMessages('pc-attack')
     reportAllShipsSunk(board.user)
     boardDisabler('write')
-  }, 500)
+  }, 50)
 }
 
 export function generateAttackCoordinates() {
@@ -25,11 +24,11 @@ export function generateAttackCoordinates() {
 function logAttack(attackCoordinates, board) {
   let hitShot
   let counter = 0
-  while (counter < 100) {
+  while (counter < 10) {
     counter++
     try {
       hitShot = board.user.receiveAttack(attackCoordinates)
-      return hitShot
+      if (hitShot) return hitShot
     } catch (error) {
       console.log(error)
     }
