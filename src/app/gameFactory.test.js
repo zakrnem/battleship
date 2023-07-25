@@ -431,7 +431,7 @@ describe('Ships receive attacks & and sink.', () => {
     6: { A: '_', B: 'X', C: '1', D: 'X', E: '1', F: '1', G: '_', H: '_', I: '_', J: '_' },
     7: { A: '_', B: '_', C: '_', D: '_', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
     8: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
-    9: { A: '_', B: '_', C: '_', D: '4', E: '2', F: '2', G: '2', H: '2', I: '_', J: '_' },
+    9: { A: '_', B: '_', C: '_', D: '4', E: 'X', F: 'X', G: 'X', H: '2', I: '_', J: '_' },
     10: { A: '_', B: '_', C: '_', D: '4', E: '_', F: '_', G: '_', H: '_', I: '_', J: '_' },
   }
 
@@ -439,37 +439,41 @@ describe('Ships receive attacks & and sink.', () => {
     expect(game.grid).toEqual(grid1)
   })
   test('Ship 1 receives attacks.', () => {
-    game.receiveAttack(['B', '6'])
-    game.receiveAttack(['D', '6'])
+    game.receiveAttack(['B', 6])
+    game.receiveAttack(['D', 6])
     expect(game.ship1.hits).toEqual(2)
     expect(game.ship1.isSunk()).toEqual(false)
   })
   test('Ship 5 sinks after two attacks.', () => {
-    game.receiveAttack(['I', '4'])
-    game.receiveAttack(['I', '5'])
+    game.receiveAttack(['I', 4])
+    game.receiveAttack(['I', 5])
     expect(game.ship5.isSunk()).toEqual(true)
   })
+
   test('Board is affected as expected after attacks.', () => {
-    game.receiveAttack(['G', '3'])
-    game.receiveAttack(['H', '5'])
+    game.receiveAttack(['G', 3])
+    game.receiveAttack(['H', 5])
+    game.receiveAttack(['E', 9])
+    game.receiveAttack(['F', 9])
+    game.receiveAttack(['G', 9])
     expect(game.grid).toEqual(grid2)
   })
   test(`Unattacked ships don't have hits.`, () => {
     expect(game.ship1.hits).toEqual(2)
     expect(game.ship5.hits).toEqual(2)
-    expect(game.ship2.hits).toEqual(0)
+    expect(game.ship2.hits).toEqual(3)
   })
   test('Throws error when attacking a previously attacked cell.', () => {
     expect(() => {
-      game.receiveAttack(['D', '6'])
+      game.receiveAttack(['D', 6])
     }).toThrow('Cell has already been attacked')
     expect(game.ship1.hits).toEqual(2)
     expect(() => {
-      game.receiveAttack(['I', '4'])
+      game.receiveAttack(['I', 4])
     }).toThrow('Cell has already been attacked')
     expect(game.ship5.hits).toEqual(2)
     expect(() => {
-      game.receiveAttack(['G', '3'])
+      game.receiveAttack(['G', 3])
     }).toThrow('Cell has already been attacked')
   })
   test(`Informs correctly when all ships haven't been sunk`, () => {
@@ -509,5 +513,5 @@ describe('isCellOccupied method works.', () => {
     expect(game.user.isCellOccupied(['C', 4])).toEqual(true)
     expect(game.user.isCellOccupied(['E', 4])).toEqual(true)
     expect(game.user.isCellOccupied(['B', 5])).toEqual(false)
-})
+  })
 })

@@ -2,7 +2,6 @@ import { getCoordinatesFromId } from './coordinateFromId'
 import { game } from './game'
 import { boardDisabler } from './boardDisabler'
 
-
 export function pcBoardListener() {
   const pcBoard = document.querySelector('.pc-board')
   pcBoard.addEventListener('mouseover', (e) => mouseoverHandler(e))

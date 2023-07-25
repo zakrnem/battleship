@@ -2,7 +2,6 @@ import { boardDisabler } from './boardDisabler'
 import { game } from './game'
 import { arrayFromBoard } from './printBoard'
 
-
 export function reportAllShipsSunk(board) {
   const boolean = board.allShipsSunk()
   if (boolean === true) {

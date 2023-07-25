@@ -3,20 +3,20 @@ export function gameMessages(status) {
   let message
 
   switch (true) {
-    case (status === 'initialize'):
+    case status === 'initialize':
       message = `Welcome to the game.`
       break
-    case (status === 'place-ships'):
+    case status === 'place-ships':
       message = `Please insert the ships on the left board.`
       break
-    case (status === 'first-attack'):
+    case status === 'first-attack':
       message = 'Now you can attack the opponent on the right board.'
       break
-    case (status === 'user-attack'):
+    case status === 'user-attack':
       message = '_'
       messagePara.style.color = 'var(--background-color)'
       break
-    case (status === 'pc-attack'):
+    case status === 'pc-attack':
       message = `The computer has made an attack, now it's your turn.`
       messagePara.style.color = ''
       break

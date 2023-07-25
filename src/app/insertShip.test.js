@@ -50,16 +50,27 @@ describe('Inserts ships on the board.', () => {
 
 describe(`Throws error.`, () => {
   const game = gameboard()
-  const positionsArray1 = [ ['C', 3], ['C', 4] , ['C', 5] ]
-  const positionsArray2 = [ ['A', 3], ['A', 4] , ['A', 5] ]
+  const positionsArray1 = [
+    ['C', 3],
+    ['C', 4],
+    ['C', 5],
+  ]
+  const positionsArray2 = [
+    ['A', 3],
+    ['A', 4],
+    ['A', 5],
+  ]
   insertShip(game, 1, ['B', 4], 'horizontal')
 
   test(`isCellOccupied() throws error when trying to insert a ship when there's another one`, () => {
-    expect(() => isCellOccupied(positionsArray1, game)).toThrow(`There's another ship at this position`)
+    expect(() => isCellOccupied(positionsArray1, game)).toThrow(
+      `There's another ship at this position`
+    )
     expect(isCellOccupied(positionsArray2, game)).toEqual(false)
   })
   test(`insertShip() throws error when trying to insert a ship when there's another one`, () => {
-    expect(() => insertShip(game, 2, ['C', 3], 'vertical')).toThrow(`There's another ship at this position`)
+    expect(() => insertShip(game, 2, ['C', 3], 'vertical')).toThrow(
+      `There's another ship at this position`
+    )
   })
 })
-

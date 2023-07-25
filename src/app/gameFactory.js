@@ -57,7 +57,7 @@ export function gameboard() {
           break
         case boardCell === '2':
           this.ship2.hit()
-          return true
+          hitShot = true
         case boardCell === '3':
           this.ship3.hit()
           hitShot = true

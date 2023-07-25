@@ -19,15 +19,15 @@ export function paintUserCell(typeOfOperation, cell) {
       cellColor = 'var(--ship-color)'
     }
     if (cell.getAttribute('status') !== 'occupied') {
-        switch (true) {
-            case (typeOfOperation === 'remove-ship'):
-                cellColor = ''
-                break
-            case (typeOfOperation === 'temp-ship'):
-                cellColor = 'var(--mouseover)'
-                break
-        }
+      switch (true) {
+        case typeOfOperation === 'remove-ship':
+          cellColor = ''
+          break
+        case typeOfOperation === 'temp-ship':
+          cellColor = 'var(--mouseover)'
+          break
+      }
     }
     cell.style.backgroundColor = cellColor
-  }  
+  }
 }
