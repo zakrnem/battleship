@@ -1,14 +1,16 @@
 import { idFromCoordinates } from './idFromCoordinates'
 
-export function paintCell(coordinates, playerString, hitShot) {
+export function paintCell(coordinates, playerString, shotStatus) {
   const cellId = idFromCoordinates(coordinates, playerString)
   const cell = document.getElementById(cellId)
-  if (cell.style.backgroundColor !== 'var(--hit-shot)') {
-    if (hitShot) {
-      cell.style.backgroundColor = 'var(--hit-shot)'
-    } else {
-      cell.style.backgroundColor = 'var(--missed-shot)'
-    }
+  if (shotStatus === true) {
+    cell.style.backgroundColor = 'var(--hit-shot)'
+  }
+  if (shotStatus === false) {
+    cell.style.backgroundColor = 'var(--missed-shot)'
+  }
+  if (shotStatus === 'previously-attacked') {
+    throw new Error('Cell has already been attacked')
   }
 }
 

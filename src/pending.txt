@@ -1,6 +1,2 @@
-After the 'allShipsSunk' notification the computer keeps attacking the user until the board
-    is completely attacked.
-In computer board, when the user attacks two times a cell in turns into 'dark red'.
-    
 Enable random ship placement.
 Improve pc attacks inteligence.

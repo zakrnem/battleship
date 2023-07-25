@@ -2,13 +2,6 @@ import { footer } from 'footer-zkrnem'
 import { game } from './app/game'
 
 export function homepage() {
-/*   document.addEventListener('keydown', (e) => {
-    if (e.code === 'Enter') {
-      game('receive-attack')
-    }
-  }) */
-
-
   footer()
   const content = document.getElementById('content')
 
