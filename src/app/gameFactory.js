@@ -48,7 +48,7 @@ export function gameboard() {
       let hitShot = false
 
       if (initialBoardCell === 'X') {
-        throw new Error('Cell has already been attacked')
+        return 'previously-attacked'
       }
       switch (true) {
         case boardCell === '1':

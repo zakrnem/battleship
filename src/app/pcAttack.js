@@ -5,9 +5,7 @@ import { boardDisabler } from './boardDisabler'
 
 export function makePcAttack(board) {
   setTimeout(() => {
-    const attackCoordinates = generateAttackCoordinates()
-    const hitShot = logAttack(attackCoordinates, board)
-    paintCell(attackCoordinates, 'user', hitShot)
+    logAttack(board)
     gameMessages('pc-attack')
     reportAllShipsSunk(board.user)
     boardDisabler('write')
@@ -17,20 +15,16 @@ export function makePcAttack(board) {
 export function generateAttackCoordinates() {
   const randomNumber = Math.floor(Math.random() * 10)
   const letterCoordinate = String.fromCharCode(65 + randomNumber)
-  const numberCoordinate = Math.floor(Math.random() * 9 + 1)
+  const numberCoordinate = Math.floor(Math.random() * 10 + 1)
   return [letterCoordinate, numberCoordinate]
 }
 
-function logAttack(attackCoordinates, board) {
-  let hitShot
-  let counter = 0
-  while (counter < 10) {
-    counter++
-    try {
-      hitShot = board.user.receiveAttack(attackCoordinates)
-      if (hitShot) return hitShot
-    } catch (error) {
-      console.log(error)
-    }
+function logAttack(board) {
+  let attackCoordinates = generateAttackCoordinates()
+  let shotStatus = board.user.receiveAttack(attackCoordinates)
+  if (shotStatus === 'previously-attacked') {
+    logAttack(board)
+  } else {
+    paintCell(attackCoordinates, 'user', shotStatus)
   }
 }

@@ -6,3 +6,4 @@ homepage()
 
 import { game } from './app/game'
 game('initialize')
+

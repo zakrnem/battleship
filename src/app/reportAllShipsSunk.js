@@ -27,6 +27,5 @@ function reportNumberOfAttacks() {
     if (el === 'X') computerAttacks++
   })
 
-  console.log('user: ' + userAttacks + ', computer: ' + computerAttacks)
-  console.log('userArr: ', userArray, ' computerArr: ', computerArray)
+  console.log('user-board: ', userAttacks, ' computer-board: ', computerAttacks)
 }
