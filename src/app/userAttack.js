@@ -6,7 +6,12 @@ import { boardDisabler } from './boardDisabler'
 
 export function makeUserAttack(board, attackCoordinates) {
   const hitShot = board.computer.receiveAttack(attackCoordinates)
-  paintCell(attackCoordinates, 'pc', hitShot)
+  try {
+    paintCell(attackCoordinates, 'pc', hitShot)
+  } catch (error) {
+      console.log(error)
+      return
+  }
   gameMessages('user-attack')
   reportAllShipsSunk(board.computer)
   boardDisabler('write')
