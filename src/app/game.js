@@ -26,8 +26,8 @@ export function game(typeOfOperation, coordinates, orientation) {
       insertShip(board.user, shipNumber++, coordinates, orientation)
       return true
     } catch (error) {
-      console.log(error)
       shipNumber--
+      console.log(shipNumber/* error */)
       return false
     }
   }

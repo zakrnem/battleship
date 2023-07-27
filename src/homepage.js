@@ -1,11 +1,11 @@
 import { footer } from 'footer-zkrnem'
 import { game } from './app/game'
-import { randomShipsPlacement } from './app/randomShipsPlacement'
+import { checkPlacementOnBoard } from './app/randomShipsPlacement'
 
 export function homepage() {
   document.addEventListener('keydown', (e) => {
     if (e.code === "Enter") {
-      console.log(randomShipsPlacement())
+      checkPlacementOnBoard()
     }
     if (e.code === "Space") {
       game('return-board')
