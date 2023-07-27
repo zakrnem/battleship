@@ -27,7 +27,7 @@ export function game(typeOfOperation, coordinates, orientation) {
       return true
     } catch (error) {
       shipNumber--
-      console.log(shipNumber/* error */)
+      console.log(error)
       return false
     }
   }

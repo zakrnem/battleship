@@ -76,22 +76,12 @@ function placeShipTemp(e) {
 function placeShip(e) {
   const currLength = ships.shift()
   const startID = e.target.id
-  let startIdNumber = parseInt(startID.match(/\d+/g))
-  const startCoordinates = getCoordinatesFromId(startIdNumber)
+  const startCoordinates = getCoordinatesFromId(startID)
   const orientationString = orientation === 1 ? 'horizontal' : 'vertical'
 
   let legalityOfPlacement = game('insert-ship', startCoordinates, orientationString)
   if (legalityOfPlacement) {
-    for (let i = 1; i < currLength; i++) {
-      startIdNumber += cellSum
-      const cellID = 'user' + startIdNumber
-      let cell = document.getElementById(cellID)
-      cell.setAttribute('status', 'occupied')
-      paintUserCell('place-ship', cell)
-    }
-    let startCell = document.getElementById(startID)
-    startCell.setAttribute('status', 'occupied')
-    paintUserCell('place-ship', e.target)
+    paintUserCell('place-ship', e.target, orientationString, currLength)
   } else {
     ships.unshift(currLength)
   }

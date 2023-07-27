@@ -1,6 +1,7 @@
 import { randomCoordinates } from "./randomCoordinates";
 import { game } from "./game";
 import { getPositionsArray } from "./getPositionsArray";
+import { idFromCoordinates } from "./idFromCoordinates";
 
 let count = 1
 
@@ -42,7 +43,7 @@ export function checkPlacementOnBoard() {
     let randomPlacement = checkPlacementLegality()
     try {
         game('insert-ship', randomPlacement[0], randomPlacement[1])
-        paintUserCell('place-ship', cell)
+        paintRandomCell(randomPlacement)
         console.log(game('return-board').user)
     } catch (error) {
         count--
@@ -50,6 +51,10 @@ export function checkPlacementOnBoard() {
     }
 }
 
-function paintCell() {
-    
+function paintRandomCell(randomPlacement) {
+    let startCoordinates = randomPlacement[0]
+    let orientation = randomPlacement[1]
+    let startID = idFromCoordinates(startCoordinates, 'user')
+    let startCell = document.getElementById(startID)
+    paintUserCell('place-ship', startCell, orientation, currLength)
 }

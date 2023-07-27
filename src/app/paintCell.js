@@ -14,11 +14,11 @@ export function paintCell(coordinates, playerString, shotStatus) {
   }
 }
 
-export function paintUserCell(typeOfOperation, cell) {
+export function paintUserCell(typeOfOperation, cell, orientation, currLength) {
   let cellColor
   if (cell !== null) {
     if (typeOfOperation === 'place-ship') {
-      cellColor = 'var(--ship-color)'
+      placeShipPaint(cell, orientation, currLength)
     }
     if (cell.getAttribute('status') !== 'occupied') {
       switch (true) {
@@ -32,4 +32,19 @@ export function paintUserCell(typeOfOperation, cell) {
     }
     cell.style.backgroundColor = cellColor
   }
+}
+
+function placeShipPaint(cell, orientation, currLength) {
+  let startIdNumber = parseInt(cell.id.match(/\d+/g))
+  let idSum = (orientation === 'horizontal') ? 1 : 10
+  for (let i = 1; i < currLength; i++) {
+    startIdNumber += idSum
+    const cellID = 'user' + startIdNumber
+    let currCell = document.getElementById(cellID)
+    currCell.setAttribute('status', 'occupied')
+    currCell.style.backgroundColor = 'var(--ship-color)'
+  }
+  let startCell = document.getElementById(cell.id)
+  startCell.setAttribute('status', 'occupied')
+  startCell.style.backgroundColor = 'var(--ship-color)'
 }

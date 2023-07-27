@@ -1,4 +1,5 @@
-export function getCoordinatesFromId(idNumber) {
+export function getCoordinatesFromId(startID) {
+  let idNumber = parseInt(startID.match(/\d+/g))
   const idNumberArray = idNumber.toString().split('')
   let numberCoordinate
   let letterCoordinate
