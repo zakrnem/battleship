@@ -43,11 +43,11 @@ export function buildBoard() {
   }
 
   //Build initial computer board
-  insertShip(game.computer, 1, ['B', 6], 'horizontal')
+  /* insertShip(game.computer, 1, ['B', 6], 'horizontal')
   insertShip(game.computer, 2, ['B', 2], 'horizontal')
   insertShip(game.computer, 3, ['J', 6], 'vertical')
   insertShip(game.computer, 4, ['G', 1], 'vertical')
-  insertShip(game.computer, 5, ['I', 4], 'vertical')
+  insertShip(game.computer, 5, ['I', 4], 'vertical') */
 
   return game
 }

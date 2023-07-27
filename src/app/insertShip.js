@@ -36,6 +36,7 @@ export function insertCompleteShip(
   gameObj
 ) {
   const positionsArray = getPositionsArray(length[shipNumber], startCoordinates, orientation)
+  console.log('ship#: ', shipNumber)
   let cellIsOccupied = isCellOccupied(positionsArray, gameObj)
   if (!cellIsOccupied) {
     positionsArray.forEach((coordinates) => {
