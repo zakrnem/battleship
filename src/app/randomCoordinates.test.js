@@ -1,4 +1,4 @@
-import { randomCoordinates } from "./randomCoordinates"
+import { randomCoordinates } from './randomCoordinates'
 
 test('Output is an array with two items', () => {
   expect(typeof randomCoordinates()).toEqual('object')

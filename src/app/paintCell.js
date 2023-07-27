@@ -36,7 +36,7 @@ export function paintUserCell(typeOfOperation, cell, orientation, currLength) {
 
 function placeShipPaint(cell, orientation, currLength) {
   let startIdNumber = parseInt(cell.id.match(/\d+/g))
-  let idSum = (orientation === 'horizontal') ? 1 : 10
+  let idSum = orientation === 'horizontal' ? 1 : 10
   for (let i = 1; i < currLength; i++) {
     startIdNumber += idSum
     const cellID = 'user' + startIdNumber

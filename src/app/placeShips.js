@@ -3,6 +3,7 @@ import { game } from './game'
 import { gameMessages } from './gameMessages'
 import { pcBoardListener } from './pcBboardListener'
 import { paintUserCell } from './paintCell'
+import { randomShipsPlacement } from './userRandomPlacement'
 
 const ships = [5, 4, 3, 3, 2]
 let tempCells = []
@@ -37,6 +38,12 @@ export function placeShipListener() {
       } else {
         cellSum = 1 //Horizontal
       }
+    }
+    if (e.ctrlKey && e.key === ' ') {
+      randomShipsPlacement()
+    }
+    if (e.ctrlKey && e.shiftKey && e.altKey) {
+      game('return-board')
     }
   })
   document.addEventListener('mouseover', () => {
