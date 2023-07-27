@@ -13,9 +13,7 @@ export function randomShipsPlacement() {
         let startCoordinates = randomCoordinates()
         let randomNumber = Math.floor(Math.random() * 2)
         let orientationString = randomNumber === 1 ? 'horizontal' : 'vertical'
-        let shipNumber = count
         return {
-            shipNum: shipNumber,
             coordinates: startCoordinates,
             orientation: orientationString,
         }
@@ -25,7 +23,6 @@ export function randomShipsPlacement() {
 }
 
 export function checkPlacementOnBoard() {
-    //let randomPlacement = checkPlacementLegality()
     let randomPlacement = randomShipsPlacement()
     console.log(randomPlacement.coordinates)
     const currLength = ships[0]
@@ -37,11 +34,14 @@ export function checkPlacementOnBoard() {
             paintRandomCell(randomPlacement, currLength)
             ships.shift()
             count++
-        } 
+        } else {
+            checkPlacementOnBoard()
+        }
     } catch (error) {
         console.log(error)
-        //checkPlacementOnBoard()
     }
+
+    if (count <= 5) checkPlacementOnBoard()
 }
 
 function paintRandomCell(randomPlacement, currLength) {
@@ -50,21 +50,4 @@ function paintRandomCell(randomPlacement, currLength) {
     let startID = idFromCoordinates(startCoordinates, 'user')
     let startCell = document.getElementById(startID)
     paintUserCell('place-ship', startCell, orientation, currLength)
-}
-
-function checkPlacementLegality() {
-    let randomPlacement = randomShipsPlacement()
-    const length = ['', 5, 4, 3, 3, 2]
-    //console.log(randomPlacement)
-    let shipNumber = length[randomPlacement.shipNum]
-    let startCoordinates = randomPlacement.coordinates
-    let orientation = randomPlacement.orientation
-    let positionsArray 
-    try {
-        positionsArray = getPositionsArray(shipNumber, startCoordinates, orientation)
-        return [randomPlacement.coordinates, randomPlacement.orientation]
-    } catch (error) {
-        count--
-        checkPlacementLegality()
-    }
 }
