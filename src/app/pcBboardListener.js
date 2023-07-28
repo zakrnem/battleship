@@ -11,8 +11,7 @@ export function pcBoardListener() {
 function attackHandler(e) {
   let disable = boardDisabler('read')
   if (disable === -1) {
-    const idNumber = parseInt(e.target.id.match(/\d+/)[0])
-    const attackCoordinates = getCoordinatesFromId(idNumber)
+    const attackCoordinates = getCoordinatesFromId(e.target.id)
     game('attack-oponent', attackCoordinates)
   }
 }

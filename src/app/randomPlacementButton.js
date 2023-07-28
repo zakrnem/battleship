@@ -7,6 +7,6 @@ export function randomPlacementButton(remove) {
         header.append(randomButton)
     } else {
         let randomButton = document.getElementById('random-insert')
-        randomButton.remove()
+        if (randomButton !== null) randomButton.remove()
     }
   }

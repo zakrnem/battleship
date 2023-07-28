@@ -17,7 +17,7 @@ export function game(typeOfOperation, coordinates, orientation) {
   if (typeOfOperation === 'receive-attack') {
     makePcAttack(board)
   }
-  if (typeOfOperation === 'insert-ship') {
+  if (typeOfOperation === 'insert-user-ship') {
     try {
       insertShip(board.user, shipNumber++, coordinates, orientation)
       return true

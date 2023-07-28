@@ -41,8 +41,8 @@ function placeShipListener() {
       }
     }
     if (ships.length < 5 && removedButton === 0) {
-      randomPlacementButton(true)
       removedButton++
+      randomPlacementButton(true)
     }
   })
   document.addEventListener('click', (e) => {
@@ -102,7 +102,7 @@ function placeShip(e) {
   const startCoordinates = getCoordinatesFromId(startID)
   const orientationString = orientation === 1 ? 'horizontal' : 'vertical'
 
-  let legalityOfPlacement = game('insert-ship', startCoordinates, orientationString)
+  let legalityOfPlacement = game('insert-user-ship', startCoordinates, orientationString)
   if (legalityOfPlacement) {
     paintUserCell('place-ship', e.target, orientationString, currLength)
   } else {
