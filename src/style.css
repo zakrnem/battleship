@@ -6,6 +6,8 @@
   --ship-color: #000a2d;
   --missed-shot: #e23c3c;
   --hit-shot: #4b0000;
+  --hover-color: #ebe5c6;
+  --active-color: #c7bd89;
 }
 
 @font-face {
@@ -18,6 +20,11 @@
   src: url(./fonts/Ubuntu-Medium.ttf);
 }
 
+@font-face {
+  font-family: light;
+  src: url(./fonts/Ubuntu-Regular.ttf);
+}
+
 body {
   background-color: var(--background-color);
   font-family: para;
@@ -26,6 +33,29 @@ body {
 
 #content {
   align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+#random-insert {
+  border: 1px solid var(--footer-color);
+  font-size: 0.8rem;
+  background-color: var(--background-color);
+  padding: .6rem;
+  font-family: light;
+}
+
+#random-insert:hover {
+  background-color: var(--hover-color);
+}
+
+#random-insert:active {
+  background-color: var(--active-color);
 }
 
 .container {
@@ -39,10 +69,6 @@ body {
 .title-logo {
   font-family: title, 'Trebuchet MS', 'Lucida Sans Unicode';
   font-size: 3.5rem;
-}
-
-#message {
-  margin-top: 1.5rem;
 }
 
 .user-side,

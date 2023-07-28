@@ -7,13 +7,18 @@ export function homepage() {
   const container = document.createElement('div')
   container.className = 'container'
 
-  const title = document.createElement('p')
-  title.textContent = 'Battleship'
-  title.className = 'title-logo'
+  const header = document.createElement('div')
+  header.className = 'header'
 
-  const message = document.createElement('p')
-  message.textContent = 'Welcome to the game.'
-  message.id = 'message'
+    const title = document.createElement('p')
+    title.textContent = 'Battleship'
+    title.className = 'title-logo'
+
+    const message = document.createElement('p')
+    message.textContent = 'Welcome to the game.'
+    message.id = 'message'
+
+    header.append(title, message)
 
   const userSide = document.createElement('div')
   userSide.className = 'user-side'
@@ -55,5 +60,5 @@ export function homepage() {
   pcSide.append(pcBoardTitle, pcBoard, pcAliveShips)
 
   container.append(userSide, pcSide)
-  content.append(title, message, container)
+  content.append(header, container)
 }

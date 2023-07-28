@@ -11,6 +11,7 @@ let counter = 0
 let orientation = 1
 let cellSum = 1
 let firstAttack = 0
+let inserted = 0
 
 export function placeShipListener() {
   const userBoard = document.querySelector('.user-board')
@@ -40,14 +41,12 @@ export function placeShipListener() {
       }
     }
     if (e.ctrlKey && e.key === ' ') {
-      randomShipsPlacement()
-    }
-    if (e.ctrlKey && e.shiftKey && e.altKey) {
       game('return-board')
     }
   })
   document.addEventListener('mouseover', () => {
-    if (ships.length > 0) {
+    if (ships.length > 0 && inserted === 0) {
+      inserted++
       gameMessages('place-ships')
     }
     if (ships.length === 0 && firstAttack === 0) {
@@ -58,6 +57,9 @@ export function placeShipListener() {
       orientationMessage('remove')
       pcBoardListener()
     }
+  })
+  document.addEventListener('click', () => {
+    randomShipsPlacement()
   })
 }
 

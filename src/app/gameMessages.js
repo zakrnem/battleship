@@ -8,6 +8,7 @@ export function gameMessages(status) {
       break
     case status === 'place-ships':
       message = `Please insert the ships on the left board.`
+      randomPlacementButton()
       break
     case status === 'first-attack':
       message = 'Now you can attack the opponent on the right board.'
@@ -25,4 +26,13 @@ export function gameMessages(status) {
   if (status !== undefined) {
     messagePara.textContent = message
   }
+}
+
+function randomPlacementButton() {
+  //throw new Error
+  let header = document.querySelector('.header')
+  let randomButton = document.createElement('button')
+  randomButton.id = 'random-insert'
+  randomButton.textContent = 'Insert ships randomly'
+  header.append(randomButton)
 }
