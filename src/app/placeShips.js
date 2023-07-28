@@ -28,7 +28,7 @@ export function placeShipListener() {
       firstAttack++
     }
     if (ships.length === 0) {
-      orientationMessage('remove')
+      gameMessages('orientation', true)
       pcBoardListener()
     }
     if (ships.length < 5 && removedButton === 0) {
@@ -54,7 +54,7 @@ export function placeShipListener() {
     }
   })
   userBoard.addEventListener('mouseover', (e) => {
-    if (counter === 0) orientationMessage()
+    if (counter === 0) gameMessages('orientation')
     counter++
     if (ships.length > 0) {
       placeShipTemp(e)
@@ -68,6 +68,7 @@ export function placeShipListener() {
       } else {
         cellSum = 1 //Horizontal
       }
+      removeShipTemp()
     }
     if (e.ctrlKey && e.key === ' ') {
       game('return-board')
@@ -115,10 +116,4 @@ function removeShipTemp() {
     let cell = document.getElementById(cellID)
     paintUserCell('remove-ship', cell)
   }
-}
-
-function orientationMessage(remove) {
-  const userMessage = document.getElementById('user-message')
-  userMessage.textContent = 'Press "Space" to change ship orientation'
-  if (remove === 'remove') userMessage.textContent = ''
 }

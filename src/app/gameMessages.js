@@ -1,4 +1,4 @@
-export function gameMessages(status) {
+export function gameMessages(status, boolean) {
   const messagePara = document.getElementById('message')
   let message
 
@@ -20,8 +20,13 @@ export function gameMessages(status) {
       message = `The computer has made an attack, now it's your turn.`
       messagePara.style.color = ''
       break
-  }
+    case status === 'orientation':
+      const userMessage = document.getElementById('user-message')
+      userMessage.textContent = 'Press "Space" to change ship orientation'
+      if (boolean) userMessage.textContent = ''
+      break
 
+  }
   if (status !== undefined) {
     messagePara.textContent = message
   }
