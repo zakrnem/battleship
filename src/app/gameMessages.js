@@ -13,10 +13,10 @@ export function gameMessages(status, boolean) {
     case status === 'first-attack':
       message = 'Now you can attack the opponent on the right board.'
       break
-    /* case status === 'user-attack':
+    case status === 'user-attack':
       message = '_'
       messagePara.style.color = 'var(--background-color)'
-      break */
+      break
     case status === 'pc-attack':
       message = `The computer has made an attack, now it's your turn.`
       messagePara.style.color = ''
