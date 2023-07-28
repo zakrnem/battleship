@@ -1,6 +1,7 @@
 export function gameMessages(status, boolean) {
   const messagePara = document.getElementById('message')
   let message
+  
 
   switch (true) {
     case status === 'initialize':
@@ -12,22 +13,22 @@ export function gameMessages(status, boolean) {
     case status === 'first-attack':
       message = 'Now you can attack the opponent on the right board.'
       break
-    case status === 'user-attack':
+    /* case status === 'user-attack':
       message = '_'
       messagePara.style.color = 'var(--background-color)'
-      break
+      break */
     case status === 'pc-attack':
       message = `The computer has made an attack, now it's your turn.`
       messagePara.style.color = ''
       break
-    case status === 'orientation':
-      const userMessage = document.getElementById('user-message')
-      userMessage.textContent = 'Press "Space" to change ship orientation'
-      if (boolean) userMessage.textContent = ''
-      break
-
   }
   if (status !== undefined) {
     messagePara.textContent = message
   }
+}
+
+export function orientationMessage(boolean) {
+  const userMessage = document.getElementById('user-message')
+  userMessage.textContent = 'Press "Space" to change ship orientation'
+  if (boolean) userMessage.textContent = ''
 }

@@ -1,6 +1,6 @@
 import { getCoordinatesFromId } from './coordinateFromId'
 import { game } from './game'
-import { gameMessages } from './gameMessages'
+import { gameMessages, orientationMessage } from './gameMessages'
 import { pcBoardListener } from './pcBboardListener'
 import { paintUserCell } from './paintCell'
 import { randomShipsPlacement } from './userRandomPlacement'
@@ -23,13 +23,13 @@ export function placeShipListener() {
       gameMessages('place-ships')
       randomPlacementButton()
     }
-    if (ships.length === 0 && firstAttack === 0) {
-      gameMessages('first-attack')
-      firstAttack++
-    }
     if (ships.length === 0) {
-      gameMessages('orientation', true)
+      orientationMessage(true)
       pcBoardListener()
+      if (firstAttack === 0) {
+        firstAttack++
+        gameMessages('first-attack')
+      }
     }
     if (ships.length < 5 && removedButton === 0) {
       removedButton++
@@ -38,10 +38,7 @@ export function placeShipListener() {
   })
   document.addEventListener('click', (e) => {
     if (e.target.id === 'random-insert') {
-      removeShipTemp()
-      randomShipsPlacement()
-      randomPlacementButton(true)
-      ships = []
+      randomInsert()
     }
   })
   userBoard.addEventListener('click', (e) => {
@@ -54,7 +51,7 @@ export function placeShipListener() {
     }
   })
   userBoard.addEventListener('mouseover', (e) => {
-    if (counter === 0) gameMessages('orientation')
+    if (counter === 0) orientationMessage()
     counter++
     if (ships.length > 0) {
       placeShipTemp(e)
@@ -62,13 +59,7 @@ export function placeShipListener() {
   })
   document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
-      orientation *= -1
-      if (orientation === -1) {
-        cellSum = 10 //Vertical
-      } else {
-        cellSum = 1 //Horizontal
-      }
-      removeShipTemp()
+      changeOrientation()
     }
     if (e.ctrlKey && e.key === ' ') {
       game('return-board')
@@ -116,4 +107,21 @@ function removeShipTemp() {
     let cell = document.getElementById(cellID)
     paintUserCell('remove-ship', cell)
   }
+}
+
+function changeOrientation() {
+  orientation *= -1
+  if (orientation === -1) {
+    cellSum = 10 //Vertical
+  } else {
+    cellSum = 1 //Horizontal
+  }
+  removeShipTemp()
+}
+
+function randomInsert() {
+  removeShipTemp()
+  randomShipsPlacement()
+  randomPlacementButton(true)
+  ships = []
 }
