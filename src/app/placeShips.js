@@ -4,17 +4,46 @@ import { gameMessages } from './gameMessages'
 import { pcBoardListener } from './pcBboardListener'
 import { paintUserCell } from './paintCell'
 import { randomShipsPlacement } from './userRandomPlacement'
+import { randomPlacementButton } from './randomPlacementButton'
 
-const ships = [5, 4, 3, 3, 2]
+let ships = [5, 4, 3, 3, 2]
 let tempCells = []
 let counter = 0
 let orientation = 1
 let cellSum = 1
 let firstAttack = 0
 let inserted = 0
+let removedButton = 0
 
 export function placeShipListener() {
   const userBoard = document.querySelector('.user-board')
+  document.addEventListener('mouseover', () => {
+    if (ships.length > 0 && inserted === 0) {
+      inserted++
+      gameMessages('place-ships')
+      randomPlacementButton()
+    }
+    if (ships.length === 0 && firstAttack === 0) {
+      gameMessages('first-attack')
+      firstAttack++
+    }
+    if (ships.length === 0) {
+      orientationMessage('remove')
+      pcBoardListener()
+    }
+    if (ships.length < 5 && removedButton === 0) {
+      removedButton++
+      randomPlacementButton(true)
+    }
+  })
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'random-insert') {
+      removeShipTemp()
+      randomShipsPlacement()
+      randomPlacementButton(true)
+      ships = []
+    }
+  })
   userBoard.addEventListener('click', (e) => {
     if (
       e.target.className !== 'user-board' &&
@@ -43,23 +72,6 @@ export function placeShipListener() {
     if (e.ctrlKey && e.key === ' ') {
       game('return-board')
     }
-  })
-  document.addEventListener('mouseover', () => {
-    if (ships.length > 0 && inserted === 0) {
-      inserted++
-      gameMessages('place-ships')
-    }
-    if (ships.length === 0 && firstAttack === 0) {
-      gameMessages('first-attack')
-      firstAttack++
-    }
-    if (ships.length === 0) {
-      orientationMessage('remove')
-      pcBoardListener()
-    }
-  })
-  document.addEventListener('click', () => {
-    randomShipsPlacement()
   })
 }
 
