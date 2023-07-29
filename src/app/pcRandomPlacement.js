@@ -18,7 +18,7 @@ function shipsPlacementInputs() {
   }
 }
 
-export function randomShipsPlacement() {
+export function pcRandomShipsPlacement() {
   let randomPlacement = shipsPlacementInputs()
   //console.log(randomPlacement.coordinates)
   const currLength = ships[0]
@@ -29,10 +29,10 @@ export function randomShipsPlacement() {
       ships.shift()
       count++
     } else {
-      randomShipsPlacement()
+      pcRandomShipsPlacement()
     }
   } catch (error) {
     console.log(error)
   }
-  if (count <= 5) randomShipsPlacement()
+  if (count <= 5) pcRandomShipsPlacement()
 }

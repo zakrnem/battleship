@@ -9,6 +9,11 @@ describe('Flattens the grid object.', () => {
   insertShip(game.user, 3, ['C', 1], 'vertical')
   insertShip(game.user, 4, ['D', 8], 'vertical')
   insertShip(game.user, 5, ['I', 4], 'vertical')
+  insertShip(game.computer, 1, ['B', 6], 'horizontal')
+  insertShip(game.computer, 2, ['B', 2], 'horizontal')
+  insertShip(game.computer, 3, ['J', 6], 'vertical')
+  insertShip(game.computer, 4, ['G', 1], 'vertical')
+  insertShip(game.computer, 5, ['I', 4], 'vertical')
   const flatArr = arrayFromBoard(game.user.grid)
   const expectedArr = [
     '_',

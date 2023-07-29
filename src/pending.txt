@@ -1,3 +1,2 @@
-Create a button for random ship placement on user board.
 Enable random ship placement for computer board.
 Improve pc attacks inteligence.

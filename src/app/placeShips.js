@@ -6,6 +6,7 @@ import { paintUserCell } from './paintCell'
 import { randomShipsPlacement } from './userRandomPlacement'
 import { randomPlacementButton } from './randomPlacementButton'
 import { insertBoard } from './printBoard'
+import { pcRandomShipsPlacement } from './pcRandomPlacement'
 
 let ships = [5, 4, 3, 3, 2]
 let tempCells = []
@@ -21,6 +22,7 @@ export function initializeGame() {
   insertBoard('user', board.user)
   gameMessages('initialize', board)
   placeShipListener()
+  pcRandomShipsPlacement()
 }
 
 
