@@ -24,7 +24,7 @@ export function game(typeOfOperation, coordinates, orientation) {
       return true
     } catch (error) {
       userShipNumber--
-      console.log(error)
+      //console.log(error)
       return false
     }
   }
@@ -34,7 +34,7 @@ export function game(typeOfOperation, coordinates, orientation) {
       return true
     } catch (error) {
       pcShipNumber--
-      console.log(error)
+      //console.log(error)
       return false
     }
   }

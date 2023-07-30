@@ -1,6 +1,6 @@
 {
   "name": "battleship",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Battleship project for The Odin Project",
   "main": "babel.config.js",
   "scripts": {

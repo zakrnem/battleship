@@ -16,6 +16,11 @@ let cellSum = 1
 let firstAttack = 0
 let inserted = 0
 let removedButton = 0
+let messageRemoval = false
+
+export function deactivateMessageRemoval() {
+  messageRemoval = true
+}
 
 export function initializeGame() {
   let board = game('return-board')
@@ -35,7 +40,7 @@ function placeShipListener() {
     randomPlacementButton()
     }
     if (ships.length === 0) {
-      orientationMessage(true)
+      if (!messageRemoval) orientationMessage(true)
       pcBoardListener()
       if (firstAttack === 0) {
         firstAttack++

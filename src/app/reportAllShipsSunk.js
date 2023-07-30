@@ -1,14 +1,24 @@
 import { boardDisabler } from './boardDisabler'
 import { game } from './game'
+import { deactivateMessageRemoval } from './placeShips'
 import { arrayFromBoard } from './printBoard'
 
-export function reportAllShipsSunk(board) {
-  const boolean = board.allShipsSunk()
+export function reportAllShipsSunk(board, playerString) {
+  let boolean
+  let message
+  if (playerString === 'user') {
+    boolean = board.user.allShipsSunk()
+    message = document.getElementById('user-message')
+  } else {
+    boolean = board.computer.allShipsSunk()
+    message = document.getElementById('pc-message')
+  }
   if (boolean === true) {
-    const pcMessage = document.getElementById('pc-message')
-    pcMessage.textContent = 'All ships have sunk'
+    deactivateMessageRemoval()
+    message.textContent = 'All ships have sunk'
     boardDisabler('write')
     reportNumberOfAttacks()
+    return
   }
 }
 

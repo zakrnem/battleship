@@ -8,9 +8,9 @@ export function makePcAttack(board) {
   setTimeout(() => {
     logAttack(board)
     gameMessages('pc-attack')
-    reportAllShipsSunk(board.user)
+    reportAllShipsSunk(board, 'user')
     boardDisabler('write')
-  }, 50)
+  }, 200)
 }
 
 function logAttack(board) {

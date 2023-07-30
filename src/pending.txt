@@ -1,2 +1,1 @@
-Enable random ship placement for computer board.
 Improve pc attacks inteligence.

@@ -9,11 +9,11 @@ export function makeUserAttack(board, attackCoordinates) {
   try {
     paintCell(attackCoordinates, 'pc', hitShot)
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     return
   }
   gameMessages('user-attack')
-  reportAllShipsSunk(board.computer)
+  reportAllShipsSunk(board, 'computer')
   boardDisabler('write')
   game('receive-attack')
 }
